@@ -1,0 +1,10 @@
+C:\Users\Liam\Desktop\AI project\SpeechRecognitionV2\SpeechRecognitionV2\bin\Debug\SpeechRecognitionV2.exe.config
+C:\Users\Liam\Desktop\AI project\SpeechRecognitionV2\SpeechRecognitionV2\bin\Debug\SpeechRecognitionV2.exe
+C:\Users\Liam\Desktop\AI project\SpeechRecognitionV2\SpeechRecognitionV2\bin\Debug\SpeechRecognitionV2.pdb
+C:\Users\Liam\Desktop\AI project\SpeechRecognitionV2\SpeechRecognitionV2\obj\Debug\SpeechRecognitionV2.csprojAssemblyReference.cache
+C:\Users\Liam\Desktop\AI project\SpeechRecognitionV2\SpeechRecognitionV2\obj\Debug\SpeechRecognitionV2.Form1.resources
+C:\Users\Liam\Desktop\AI project\SpeechRecognitionV2\SpeechRecognitionV2\obj\Debug\SpeechRecognitionV2.Properties.Resources.resources
+C:\Users\Liam\Desktop\AI project\SpeechRecognitionV2\SpeechRecognitionV2\obj\Debug\SpeechRecognitionV2.csproj.GenerateResource.cache
+C:\Users\Liam\Desktop\AI project\SpeechRecognitionV2\SpeechRecognitionV2\obj\Debug\SpeechRecognitionV2.csproj.CoreCompileInputs.cache
+C:\Users\Liam\Desktop\AI project\SpeechRecognitionV2\SpeechRecognitionV2\obj\Debug\SpeechRecognitionV2.exe
+C:\Users\Liam\Desktop\AI project\SpeechRecognitionV2\SpeechRecognitionV2\obj\Debug\SpeechRecognitionV2.pdb

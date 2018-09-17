@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--XML INTERFACE - List of events-->
+<EVENT ID="1" Name="wake-greeting">
+  <tree>False</tree>
+  <alwaysawake>True</alwaysawake>
+  <triggerstrings>
+    <string>hey ada</string>
+    <string>ada</string>
+    <string>hello ada</string>
+    <string>hi ada</string>
+    <string>okay ada</string>
+  </triggerstrings>
+  <EVENT ID="2" Name="howareyou">
+    <tree>False</tree>
+    <alwaysawake>False</alwaysawake>
+    <triggerstrings>
+      <string>how are you</string>
+      <string>how are you doing</string>
+      <string>how ya doing</string>
+      <string>hows ya doing</string>
+    </triggerstrings>
+  </EVENT>
+</EVENT>

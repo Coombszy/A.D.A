@@ -1,0 +1,7 @@
+C:\Users\Liam\Desktop\AI project\AI Host\AI Host\bin\Debug\AI Host.exe.config
+C:\Users\Liam\Desktop\AI project\AI Host\AI Host\bin\Debug\AI Host.exe
+C:\Users\Liam\Desktop\AI project\AI Host\AI Host\bin\Debug\AI Host.pdb
+C:\Users\Liam\Desktop\AI project\AI Host\AI Host\obj\Debug\AI Host.csproj.CoreCompileInputs.cache
+C:\Users\Liam\Desktop\AI project\AI Host\AI Host\obj\Debug\AI Host.exe
+C:\Users\Liam\Desktop\AI project\AI Host\AI Host\obj\Debug\AI Host.pdb
+C:\Users\Liam\Desktop\AI project\AI Host\AI Host\obj\Debug\AI Host.csprojResolveAssemblyReference.cache

@@ -1,0 +1,7 @@
+C:\Users\Liam\Desktop\AI project\Interface\Interface\bin\Debug\Interface.exe.config
+C:\Users\Liam\Desktop\AI project\Interface\Interface\bin\Debug\Interface.exe
+C:\Users\Liam\Desktop\AI project\Interface\Interface\bin\Debug\Interface.pdb
+C:\Users\Liam\Desktop\AI project\Interface\Interface\obj\Debug\Interface.csproj.CoreCompileInputs.cache
+C:\Users\Liam\Desktop\AI project\Interface\Interface\obj\Debug\Interface.exe
+C:\Users\Liam\Desktop\AI project\Interface\Interface\obj\Debug\Interface.pdb
+C:\Users\Liam\Desktop\AI project\Interface\Interface\obj\Debug\Interface.csprojAssemblyReference.cache

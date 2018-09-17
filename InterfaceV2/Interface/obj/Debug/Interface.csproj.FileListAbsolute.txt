@@ -1,0 +1,10 @@
+C:\Users\Liam\Desktop\AI project\InterfaceV2\Interface\bin\Debug\Interface.exe.config
+C:\Users\Liam\Desktop\AI project\InterfaceV2\Interface\bin\Debug\Interface.exe
+C:\Users\Liam\Desktop\AI project\InterfaceV2\Interface\bin\Debug\Interface.pdb
+C:\Users\Liam\Desktop\AI project\InterfaceV2\Interface\obj\Debug\Interface.Interface.resources
+C:\Users\Liam\Desktop\AI project\InterfaceV2\Interface\obj\Debug\Interface.Properties.Resources.resources
+C:\Users\Liam\Desktop\AI project\InterfaceV2\Interface\obj\Debug\Interface.csproj.GenerateResource.cache
+C:\Users\Liam\Desktop\AI project\InterfaceV2\Interface\obj\Debug\Interface.csproj.CoreCompileInputs.cache
+C:\Users\Liam\Desktop\AI project\InterfaceV2\Interface\obj\Debug\Interface.exe
+C:\Users\Liam\Desktop\AI project\InterfaceV2\Interface\obj\Debug\Interface.pdb
+C:\Users\Liam\Desktop\AI project\InterfaceV2\Interface\obj\Debug\Interface.csprojResolveAssemblyReference.cache

@@ -1,0 +1,7 @@
+C:\Users\Liam\Desktop\TIM\SpeechRecognition\SpeechRecognition\bin\Debug\SpeechRecognition.exe.config
+C:\Users\Liam\Desktop\TIM\SpeechRecognition\SpeechRecognition\bin\Debug\SpeechRecognition.exe
+C:\Users\Liam\Desktop\TIM\SpeechRecognition\SpeechRecognition\bin\Debug\SpeechRecognition.pdb
+C:\Users\Liam\Desktop\TIM\SpeechRecognition\SpeechRecognition\obj\Debug\SpeechRecognition.csprojResolveAssemblyReference.cache
+C:\Users\Liam\Desktop\TIM\SpeechRecognition\SpeechRecognition\obj\Debug\SpeechRecognition.csproj.CoreCompileInputs.cache
+C:\Users\Liam\Desktop\TIM\SpeechRecognition\SpeechRecognition\obj\Debug\SpeechRecognition.exe
+C:\Users\Liam\Desktop\TIM\SpeechRecognition\SpeechRecognition\obj\Debug\SpeechRecognition.pdb
