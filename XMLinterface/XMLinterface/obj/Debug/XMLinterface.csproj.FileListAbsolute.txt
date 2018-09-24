@@ -1,7 +1,0 @@
-C:\FileTransfer\Ada\XMLinterface\XMLinterface\bin\Debug\XMLinterface.exe.config
-C:\FileTransfer\Ada\XMLinterface\XMLinterface\bin\Debug\XMLinterface.exe
-C:\FileTransfer\Ada\XMLinterface\XMLinterface\bin\Debug\XMLinterface.pdb
-C:\FileTransfer\Ada\XMLinterface\XMLinterface\obj\Debug\XMLinterface.csprojAssemblyReference.cache
-C:\FileTransfer\Ada\XMLinterface\XMLinterface\obj\Debug\XMLinterface.csproj.CoreCompileInputs.cache
-C:\FileTransfer\Ada\XMLinterface\XMLinterface\obj\Debug\XMLinterface.exe
-C:\FileTransfer\Ada\XMLinterface\XMLinterface\obj\Debug\XMLinterface.pdb

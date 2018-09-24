@@ -1,0 +1,11 @@
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\EventAndTriggerManipulation\EventAndTriggerManipulation\bin\Debug\netcoreapp2.1\EventAndTriggerManipulation.deps.json
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\EventAndTriggerManipulation\EventAndTriggerManipulation\bin\Debug\netcoreapp2.1\EventAndTriggerManipulation.runtimeconfig.json
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\EventAndTriggerManipulation\EventAndTriggerManipulation\bin\Debug\netcoreapp2.1\EventAndTriggerManipulation.runtimeconfig.dev.json
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\EventAndTriggerManipulation\EventAndTriggerManipulation\bin\Debug\netcoreapp2.1\EventAndTriggerManipulation.dll
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\EventAndTriggerManipulation\EventAndTriggerManipulation\bin\Debug\netcoreapp2.1\EventAndTriggerManipulation.pdb
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\EventAndTriggerManipulation\EventAndTriggerManipulation\obj\Debug\netcoreapp2.1\EventAndTriggerManipulation.csprojAssemblyReference.cache
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\EventAndTriggerManipulation\EventAndTriggerManipulation\obj\Debug\netcoreapp2.1\EventAndTriggerManipulation.csproj.CoreCompileInputs.cache
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\EventAndTriggerManipulation\EventAndTriggerManipulation\obj\Debug\netcoreapp2.1\EventAndTriggerManipulation.AssemblyInfoInputs.cache
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\EventAndTriggerManipulation\EventAndTriggerManipulation\obj\Debug\netcoreapp2.1\EventAndTriggerManipulation.AssemblyInfo.cs
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\EventAndTriggerManipulation\EventAndTriggerManipulation\obj\Debug\netcoreapp2.1\EventAndTriggerManipulation.dll
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\EventAndTriggerManipulation\EventAndTriggerManipulation\obj\Debug\netcoreapp2.1\EventAndTriggerManipulation.pdb

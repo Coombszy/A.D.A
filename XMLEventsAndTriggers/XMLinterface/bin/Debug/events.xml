@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--XML INTERFACE - List of events-->
+<EVENT ID="1" Name="wake-greeting">
+  <tree>False</tree>
+  <alwaysawake>True</alwaysawake>
+  <triggerstrings>
+    <string>hey ada</string>
+    <string>okay ada</string>
+    <string>hello ada</string>
+  </triggerstrings>
+  <responsestrings>
+    <string>#C/WAKE</string>
+  </responsestrings>
+</EVENT>
