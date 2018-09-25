@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace XMLinterface
+namespace EventAndTriggerManipulation
 {
     class XMLinterface
     {
@@ -14,9 +14,9 @@ namespace XMLinterface
         {
             this.XmlName = xmlname;
         }
-        public List<Event> ReadXML()
+        public List<Node> ReadXML()
         {
-            List<Event> events = new List<Event>();
+            List<Node> events = new List<Node>();
             try
             {
                 XmlReader reader = XmlReader.Create(XmlName);
@@ -30,8 +30,8 @@ namespace XMLinterface
                             string name = reader.GetAttribute(1);
                             bool tree = false;
                             bool alwaysawake = false;
+                            List<string> eventsstrings = new List<string>();
                             List<string> triggers = new List<string>();
-                            List<string> responses = new List<string>();
                             List<int> subevents = new List<int>();
                             while (reader.NodeType != XmlNodeType.EndElement)
                             {
@@ -73,12 +73,13 @@ namespace XMLinterface
                                                 reader.Read();
                                                 if (reader.NodeType == XmlNodeType.Text)
                                                 {
-                                                    triggers.Add(reader.Value);
+                                                    eventsstrings.Add(reader.Value);
                                                 }
                                             }
                                             reader.Read();
                                         } //end if
                                     }
+                                    reader.Read();
                                 }
 
                                 if (reader.Name == "responsestrings")
@@ -99,6 +100,7 @@ namespace XMLinterface
                                             reader.Read();
                                         } //end if
                                     }
+                                    reader.Read();
                                 }
 
                                 if (reader.Name == "subevents")
@@ -119,15 +121,17 @@ namespace XMLinterface
                                             reader.Read();
                                         } //end if
                                     }
+                                    //reader.Read();
                                 }
                             }
-                            events.Add(new Event(name, id, tree, alwaysawake, triggers, responses, subevents));
+                            events.Add(new Node(name, id, tree, alwaysawake, eventsstrings, triggers, subevents));
                         }
                     }
                 }
-                catch
+                catch (Exception e)
                 {
                     Console.WriteLine(XmlName + " is invalid, Overwrite enabled");
+                    Console.WriteLine(e.ToString());
                     Console.ReadLine();
                 }
                 reader.Close();
@@ -139,55 +143,55 @@ namespace XMLinterface
             }
             return events;
         }
-        public Event[] LoadEvents()
+        public Node[] LoadEvents()
         {
-            List<Event> TempEvents = ReadXML();
-            Event[] Events = new Event[TempEvents.Count];
-            foreach (Event TempEvent in TempEvents)
+            List<Node> TempEvents = ReadXML();
+            Node[] Events = new Node[TempEvents.Count];
+            foreach (Node TempEvent in TempEvents)
             {
-                Events[TempEvent.id - 1] = TempEvent;
+                Events[TempEvent.MyId - 1] = TempEvent;
+            }
+            return Events;
+        }//NOT USED---------------------------------------
+        public Node[] ConvertListToArray(List<Node> TempEvents)
+        {
+            Node[] Events = new Node[TempEvents.Count];
+            foreach (Node TempEvent in TempEvents)
+            {
+                Events[TempEvent.MyId - 1] = TempEvent;
             }
             return Events;
         }
-        public Event[] ConvertListToArray(List<Event> TempEvents)
-        {
-            Event[] Events = new Event[TempEvents.Count];
-            foreach (Event TempEvent in TempEvents)
-            {
-                Events[TempEvent.id - 1] = TempEvent;
-            }
-            return Events;
-        }
-        public void SaveEvents(Event[] Events)
+        public void SaveEvents(Node[] Events)
         {
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Indent = true;
             XmlWriter writer = XmlWriter.Create(XmlName, settings);
             writer.WriteStartDocument();
             writer.WriteComment("XML INTERFACE - List of events");
-            foreach (Event TempEvent in Events)
+            foreach (Node TempEvent in Events)
             {
                 writer.WriteStartElement("EVENT");
-                writer.WriteAttributeString("ID", ""+TempEvent.id);
-                writer.WriteAttributeString("Name", TempEvent.ename);
-                writer.WriteElementString("tree", ""+TempEvent.tree);
-                writer.WriteElementString("alwaysawake", ""+TempEvent.alwaysawake);
+                writer.WriteAttributeString("ID", "" + TempEvent.MyId);
+                writer.WriteAttributeString("Name", TempEvent.MyName);
+                writer.WriteElementString("tree", "" + TempEvent.Terminator);
+                writer.WriteElementString("alwaysawake", "" + TempEvent.AlwaysAwake);
                 writer.WriteStartElement("triggerstrings");
-                foreach(string trigger in TempEvent.triggers)
+                foreach (string etrigger in TempEvent.MyEvents)
                 {
-                    writer.WriteElementString("string", trigger);
+                    writer.WriteElementString("string", etrigger);
                 }
                 writer.WriteEndElement();
                 writer.WriteStartElement("responsestrings");
-                foreach(string response in TempEvent.responses)
+                foreach (string eresponse in TempEvent.MyTriggers)
                 {
-                    writer.WriteElementString("string", response);
+                    writer.WriteElementString("string", eresponse);
                 }
                 writer.WriteEndElement();
                 writer.WriteStartElement("subevents");
-                foreach (int Event in TempEvent.subEvents)
+                foreach (int Event in TempEvent.MySubEventsIds)
                 {
-                    writer.WriteElementString("int", ""+Event);
+                    writer.WriteElementString("int", "" + Event);
                 }
                 writer.WriteEndElement();
 
