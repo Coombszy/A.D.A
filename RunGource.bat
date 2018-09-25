@@ -1,0 +1,1 @@
+gource -e 0.1 --hide dirnames --seconds-per-day 15 --auto-skip-seconds 3 -f --file-idle-time 0.01 --max-file-lag 25 --title "A.D.A - A Decent Assistant" --bloom-multiplier 0.4 --bloom-intensity 0.6 --font-size 12 --font-colour FFFFFF
