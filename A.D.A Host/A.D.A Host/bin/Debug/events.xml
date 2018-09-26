@@ -9,7 +9,7 @@
     <string>okay ada</string>
   </triggerstrings>
   <responsestrings>
-    <string>#C:WAKE</string>
+    <string>#H:WAKESOUND#</string>
   </responsestrings>
   <subevents>
     <int>101</int>
