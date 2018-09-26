@@ -687,11 +687,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\liamdarrengeorge.coo\\Desktop\\Coding Practise\\A.D.A\\EventAndTriggerManipulation\\EventAndTriggerManipulation\\EventAndTriggerManipulation.csproj",
+      "projectUniqueName": "C:\\Users\\liamdarrengeorge.coo\\Desktop\\Coding Practise\\A.D.A\\MemorySystem\\EventAndTriggerManipulation\\EventAndTriggerManipulation.csproj",
       "projectName": "EventAndTriggerManipulation",
-      "projectPath": "C:\\Users\\liamdarrengeorge.coo\\Desktop\\Coding Practise\\A.D.A\\EventAndTriggerManipulation\\EventAndTriggerManipulation\\EventAndTriggerManipulation.csproj",
+      "projectPath": "C:\\Users\\liamdarrengeorge.coo\\Desktop\\Coding Practise\\A.D.A\\MemorySystem\\EventAndTriggerManipulation\\EventAndTriggerManipulation.csproj",
       "packagesPath": "C:\\Users\\liamdarrengeorge.coo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\liamdarrengeorge.coo\\Desktop\\Coding Practise\\A.D.A\\EventAndTriggerManipulation\\EventAndTriggerManipulation\\obj\\",
+      "outputPath": "C:\\Users\\liamdarrengeorge.coo\\Desktop\\Coding Practise\\A.D.A\\MemorySystem\\EventAndTriggerManipulation\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
