@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--XML INTERFACE - List of events-->
+<EVENT ID="1" Name="wake-greeting">
+  <tree>False</tree>
+  <alwaysawake>True</alwaysawake>
+  <triggerstrings>
+    <string>hey ada</string>
+    <string>hello ada</string>
+    <string>okay ada</string>
+  </triggerstrings>
+  <responsestrings>
+    <string>#C:WAKE</string>
+  </responsestrings>
+  <subevents>
+    <int>101</int>
+  </subevents>
+  <EVENT ID="101" Name="howareyou">
+    <tree>True</tree>
+    <alwaysawake>False</alwaysawake>
+    <triggerstrings>
+      <string>how are you</string>
+      <string>how are you doing</string>
+      <string>how are you doing today</string>
+      <string>how are you feeling</string>
+      <string>how are you feeling today</string>
+    </triggerstrings>
+    <responsestrings>
+      <string>i'm good</string>
+      <string>i'm great</string>
+      <string>i'm feeling fantastic</string>
+      <string>i'm good, thank you!</string>
+    </responsestrings>
+    <subevents />
+  </EVENT>
+</EVENT>

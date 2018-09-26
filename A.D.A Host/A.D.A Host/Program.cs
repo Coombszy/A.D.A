@@ -10,11 +10,10 @@ namespace A.D.A_Host
     {
         static void Main(string[] args)
         {
-            LoadingBar Test = new LoadingBar(1000, 0);
-            while(!Test.Finished())
-            {
-                Test.DrawIncrement(1);
-            }
+            MemoryHandler MemoryUnit = new MemoryHandler();
+            MemoryUnit.BuildEventList();
+            MemoryUnit.BuildMemoryStructure();
+            Console.ReadLine();
         }
     }
 }

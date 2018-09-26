@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EventAndTriggerManipulation
+namespace A.D.A_Host
 {
     class Node
     {

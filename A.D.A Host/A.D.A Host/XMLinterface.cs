@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace EventAndTriggerManipulation
+namespace A.D.A_Host
 {
     class XMLinterface
     {

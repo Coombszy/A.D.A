@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EventAndTriggerManipulation
+namespace A.D.A_Host
 {
     class MemoryHandler
     {
@@ -26,34 +26,35 @@ namespace EventAndTriggerManipulation
         }
         public void BuildMemoryStructure()
         {
-            while (EventList.Count != 0)
+            LoadingBar MemoryStructureBuilding = new LoadingBar(EventList.Count, EventList.Count, false);
+            try
             {
-                Node Event = EventList[0];
-                if (Event.MySubEventsIds.Count != 0)
+                while (EventList.Count != 0)
                 {
-                    CollectSubNodes(Event);
+                    Node Event = EventList[0];
+                    if (Event.MySubEventsIds.Count != 0)
+                    {
+                        CollectSubNodes(Event);
+                        MemoryStructureBuilding.Draw(EventList.Count);
+                    }
+                    if (Event.AlwaysAwake == true)
+                    {
+                        MemoryStructure.Add(Event);
+                        EventList.RemoveAll(x => x.MyId == Event.MyId);
+                        MemoryStructureBuilding.Draw(EventList.Count);
+                    }
+
                 }
-                if (Event.AlwaysAwake == true)
-                {
-                    MemoryStructure.Add(Event);
-                    EventList.RemoveAll(x => x.MyId == Event.MyId);
-                }
+                Console.WriteLine("SUCCESSFULLY BUILT MEMORY UNIT");
+                EventList = null;
+                GC.Collect();
             }
-            EventList = null;
-            GC.Collect();
-            /*
-            foreach (Node Event in EventList)
+            catch (Exception e)
             {
-                if (Event.MySubEventsIds.Count != 0)
-                {
-                    CollectSubNodes(Event);
-                }
-                if (Event.AlwaysAwake == true)
-                {
-                    MemoryStructure.Add(Event);
-                    EventList.RemoveAll(x => x.MyId == Event.MyId);
-                }
-            }*/
+                Console.WriteLine("FAILED TO BUILD MEMORY UNIT");
+                Console.WriteLine("ERROR LOG: "+e.ToString());
+                Console.ReadLine();
+            }
         }
         public List<string> GetEventsofActiveNode()
         {
