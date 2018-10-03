@@ -8,3 +8,13 @@ C:\Users\Liam\Desktop\AI project\InterfaceV2\Interface\obj\Debug\Interface.cspro
 C:\Users\Liam\Desktop\AI project\InterfaceV2\Interface\obj\Debug\Interface.exe
 C:\Users\Liam\Desktop\AI project\InterfaceV2\Interface\obj\Debug\Interface.pdb
 C:\Users\Liam\Desktop\AI project\InterfaceV2\Interface\obj\Debug\Interface.csprojResolveAssemblyReference.cache
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\InterfaceV2\Interface\bin\Debug\Interface.exe.config
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\InterfaceV2\Interface\bin\Debug\Interface.exe
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\InterfaceV2\Interface\bin\Debug\Interface.pdb
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\InterfaceV2\Interface\obj\Debug\Interface.csprojAssemblyReference.cache
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\InterfaceV2\Interface\obj\Debug\Interface.Interface.resources
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\InterfaceV2\Interface\obj\Debug\Interface.Properties.Resources.resources
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\InterfaceV2\Interface\obj\Debug\Interface.csproj.GenerateResource.cache
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\InterfaceV2\Interface\obj\Debug\Interface.csproj.CoreCompileInputs.cache
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\InterfaceV2\Interface\obj\Debug\Interface.exe
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\InterfaceV2\Interface\obj\Debug\Interface.pdb

@@ -19,7 +19,7 @@ namespace A.D.A_Host
         {
             EventDictionary = MemoryUnit.GetEventsofActiveNode();
         }//To be used by the Voice recog for Language Dictionary to be sent
-        public void tempDebug_RecEngine_EventUserResponse(string D_INPUT)
+        public void tempDebug_UserResponse(string D_INPUT)
         {
             if(EventDictionary.Contains(D_INPUT))
             {

@@ -19,7 +19,7 @@ namespace AI_Host
             this.InterfaceSocket = Socket;
             //Verfication 
             Console.WriteLine(" >> Interface verification successful, Bringing AI Instance online!");
-            Send("Interface successfully initialised and connected, I am Online and Ready sir");
+            Send("Successfully connected!");
 
             //Temporary Session of AI
             string Command;

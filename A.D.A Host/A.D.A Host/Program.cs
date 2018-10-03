@@ -16,7 +16,7 @@ namespace A.D.A_Host
             UserInterpreter test = new UserInterpreter(MemoryUnit);
             while(true)
             {
-                test.tempDebug_RecEngine_EventUserResponse(Console.ReadLine());
+                test.tempDebug_UserResponse(Console.ReadLine());
             }
             Console.ReadLine();
         }

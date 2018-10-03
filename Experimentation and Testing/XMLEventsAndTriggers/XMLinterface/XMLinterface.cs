@@ -79,6 +79,7 @@ namespace XMLinterface
                                             reader.Read();
                                         } //end if
                                     }
+                                    reader.Read();
                                 }
 
                                 if (reader.Name == "responsestrings")
@@ -93,12 +94,13 @@ namespace XMLinterface
                                                 reader.Read();
                                                 if (reader.NodeType == XmlNodeType.Text)
                                                 {
-                                                    triggers.Add(reader.Value);
+                                                    responses.Add(reader.Value);
                                                 }
                                             }
                                             reader.Read();
                                         } //end if
                                     }
+                                    reader.Read();
                                 }
 
                                 if (reader.Name == "subevents")

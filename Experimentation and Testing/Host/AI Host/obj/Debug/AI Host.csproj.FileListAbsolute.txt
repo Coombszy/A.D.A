@@ -5,3 +5,10 @@ C:\Users\Liam\Desktop\AI project\AI Host\AI Host\obj\Debug\AI Host.csproj.CoreCo
 C:\Users\Liam\Desktop\AI project\AI Host\AI Host\obj\Debug\AI Host.exe
 C:\Users\Liam\Desktop\AI project\AI Host\AI Host\obj\Debug\AI Host.pdb
 C:\Users\Liam\Desktop\AI project\AI Host\AI Host\obj\Debug\AI Host.csprojResolveAssemblyReference.cache
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\Host\AI Host\bin\Debug\AI Host.exe.config
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\Host\AI Host\bin\Debug\AI Host.exe
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\Host\AI Host\bin\Debug\AI Host.pdb
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\Host\AI Host\obj\Debug\AI Host.csprojAssemblyReference.cache
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\Host\AI Host\obj\Debug\AI Host.csproj.CoreCompileInputs.cache
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\Host\AI Host\obj\Debug\AI Host.exe
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\Host\AI Host\obj\Debug\AI Host.pdb

@@ -12,3 +12,10 @@ C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\XMLEventsAndTriggers
 C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\XMLEventsAndTriggers\XMLinterface\bin\Debug\XMLinterface.pdb
 C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\XMLEventsAndTriggers\XMLinterface\obj\Debug\XMLinterface.csprojAssemblyReference.cache
 C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\XMLEventsAndTriggers\XMLinterface\obj\Debug\XMLinterface.csproj.CoreCompileInputs.cache
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\XMLEventsAndTriggers\XMLinterface\bin\Debug\XMLinterface.exe.config
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\XMLEventsAndTriggers\XMLinterface\bin\Debug\XMLinterface.exe
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\XMLEventsAndTriggers\XMLinterface\bin\Debug\XMLinterface.pdb
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\XMLEventsAndTriggers\XMLinterface\obj\Debug\XMLinterface.csprojAssemblyReference.cache
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\XMLEventsAndTriggers\XMLinterface\obj\Debug\XMLinterface.csproj.CoreCompileInputs.cache
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\XMLEventsAndTriggers\XMLinterface\obj\Debug\XMLinterface.exe
+C:\Users\liamdarrengeorge.coo\Desktop\Coding Practise\A.D.A\Experimentation and Testing\XMLEventsAndTriggers\XMLinterface\obj\Debug\XMLinterface.pdb
