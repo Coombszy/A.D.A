@@ -24,112 +24,134 @@ namespace XMLinterface
                 {
                     while (reader.Read())
                     {
-                        if (reader.NodeType == XmlNodeType.Element && reader.Name == "EVENT")
+                        while (reader.NodeType != XmlNodeType.EndElement)
                         {
-                            int id = int.Parse(reader.GetAttribute(0));
-                            string name = reader.GetAttribute(1);
-                            bool tree = false;
-                            bool alwaysawake = false;
-                            List<string> triggers = new List<string>();
-                            List<string> responses = new List<string>();
-                            List<int> subevents = new List<int>();
-                            while (reader.NodeType != XmlNodeType.EndElement)
+                            if (reader.NodeType == XmlNodeType.Element && reader.Name == "EVENT")
                             {
-                                reader.Read();
-                                if (reader.Name == "tree")
+                                int id = int.Parse(reader.GetAttribute(0));
+                                string name = reader.GetAttribute(1);
+                                bool tree = false;
+                                bool alwaysawake = false;
+                                List<string> triggers = new List<string>();
+                                List<string> responses = new List<string>();
+                                List<int> subevents = new List<int>();
+                                string command = "";
+                                while (reader.NodeType != XmlNodeType.EndElement)
                                 {
-                                    while (reader.NodeType != XmlNodeType.EndElement)
+                                    reader.Read();
+                                    if (reader.Name == "tree")
                                     {
-                                        reader.Read();
-                                        if (reader.NodeType == XmlNodeType.Text)
+                                        while (reader.NodeType != XmlNodeType.EndElement)
                                         {
-                                            tree = bool.Parse(reader.Value);
+                                            reader.Read();
+                                            if (reader.NodeType == XmlNodeType.Text)
+                                            {
+                                                tree = bool.Parse(reader.Value);
+                                            }
                                         }
-                                    }
-                                    reader.Read();
-                                }//Read tree value
-                                if (reader.Name == "alwaysawake")
-                                {
-                                    while (reader.NodeType != XmlNodeType.EndElement)
-                                    {
                                         reader.Read();
-                                        if (reader.NodeType == XmlNodeType.Text)
+                                    }//Read tree value
+                                    if (reader.Name == "alwaysawake")
+                                    {
+                                        while (reader.NodeType != XmlNodeType.EndElement)
                                         {
-                                            alwaysawake = bool.Parse(reader.Value);
+                                            reader.Read();
+                                            if (reader.NodeType == XmlNodeType.Text)
+                                            {
+                                                alwaysawake = bool.Parse(reader.Value);
+                                            }
                                         }
-                                    }
-                                    reader.Read();
-                                }//Read alwaysawake value
-
-                                if (reader.Name == "triggerstrings")
-                                {
-                                    while (reader.NodeType != XmlNodeType.EndElement)
-                                    {
                                         reader.Read();
-                                        if (reader.Name == "string")
-                                        {
-                                            while (reader.NodeType != XmlNodeType.EndElement)
-                                            {
-                                                reader.Read();
-                                                if (reader.NodeType == XmlNodeType.Text)
-                                                {
-                                                    triggers.Add(reader.Value);
-                                                }
-                                            }
-                                            reader.Read();
-                                        } //end if
-                                    }
-                                    reader.Read();
-                                }
+                                    }//Read alwaysawake value
 
-                                if (reader.Name == "responsestrings")
-                                {
-                                    while (reader.NodeType != XmlNodeType.EndElement)
+                                    if (reader.Name == "triggerstrings")
                                     {
-                                        reader.Read();
-                                        if (reader.Name == "string")
+                                        while (reader.NodeType != XmlNodeType.EndElement)
                                         {
-                                            while (reader.NodeType != XmlNodeType.EndElement)
-                                            {
-                                                reader.Read();
-                                                if (reader.NodeType == XmlNodeType.Text)
-                                                {
-                                                    responses.Add(reader.Value);
-                                                }
-                                            }
                                             reader.Read();
-                                        } //end if
+                                            if (reader.Name == "string")
+                                            {
+                                                while (reader.NodeType != XmlNodeType.EndElement)
+                                                {
+                                                    reader.Read();
+                                                    if (reader.NodeType == XmlNodeType.Text)
+                                                    {
+                                                        triggers.Add(reader.Value);
+                                                    }
+                                                }
+                                                reader.Read();
+                                            } //end if
+                                        }
+                                        reader.Read();
                                     }
-                                    reader.Read();
-                                }
 
-                                if (reader.Name == "subevents")
-                                {
-                                    while (reader.NodeType != XmlNodeType.EndElement)
+                                    if (reader.Name == "responsestrings")
                                     {
-                                        reader.Read();
-                                        if (reader.Name == "int")
+                                        while (reader.NodeType != XmlNodeType.EndElement)
                                         {
-                                            while (reader.NodeType != XmlNodeType.EndElement)
-                                            {
-                                                reader.Read();
-                                                if (reader.NodeType == XmlNodeType.Text)
-                                                {
-                                                    subevents.Add(int.Parse(reader.Value));
-                                                }
-                                            }
                                             reader.Read();
-                                        } //end if
+                                            if (reader.Name == "string")
+                                            {
+                                                while (reader.NodeType != XmlNodeType.EndElement)
+                                                {
+                                                    reader.Read();
+                                                    if (reader.NodeType == XmlNodeType.Text)
+                                                    {
+                                                        responses.Add(reader.Value);
+                                                    }
+                                                }
+                                                reader.Read();
+                                            } //end if
+                                        }
+                                        reader.Read();
                                     }
+
+                                    if (reader.Name == "subevents")
+                                    {
+                                        while (reader.NodeType != XmlNodeType.EndElement)
+                                        {
+                                            reader.Read();
+                                            if (reader.Name == "int")
+                                            {
+                                                while (reader.NodeType != XmlNodeType.EndElement)
+                                                {
+                                                    reader.Read();
+                                                    if (reader.NodeType == XmlNodeType.Text)
+                                                    {
+                                                        subevents.Add(int.Parse(reader.Value));
+                                                    }
+                                                }
+                                                reader.Read();
+                                            } //end if
+                                        }
+                                        reader.Read();
+                                    }
+                                    if (reader.Name == "command")
+                                    {
+                                        while (reader.NodeType != XmlNodeType.EndElement)
+                                        {
+                                            reader.Read();
+                                            if (reader.NodeType == XmlNodeType.Text)
+                                            {
+                                                command = reader.Value;
+                                            }
+                                        }
+                                        reader.Read();
+                                    }//Read Command
                                 }
+                                events.Add(new Event(name, id, tree, alwaysawake, triggers, responses, subevents, command));
                             }
-                            events.Add(new Event(name, id, tree, alwaysawake, triggers, responses, subevents));
+                            else
+                            {
+                                break;
+                            }
                         }
                     }
                 }
-                catch
+                catch (Exception e)
                 {
                     Console.WriteLine(XmlName + " is invalid, Overwrite enabled");
+                    Console.WriteLine(e.ToString());
                     Console.ReadLine();
                 }
                 reader.Close();
@@ -167,6 +189,7 @@ namespace XMLinterface
             XmlWriter writer = XmlWriter.Create(XmlName, settings);
             writer.WriteStartDocument();
             writer.WriteComment("XML INTERFACE - List of events");
+            writer.WriteStartElement("EVENTS");
             foreach (Event TempEvent in Events)
             {
                 writer.WriteStartElement("EVENT");
@@ -192,10 +215,11 @@ namespace XMLinterface
                     writer.WriteElementString("int", ""+Event);
                 }
                 writer.WriteEndElement();
-
-
+                writer.WriteElementString("command", "" + TempEvent.command);
+                writer.WriteEndElement();
             }
             //writer.WriteEndDocument();
+            writer.WriteEndElement();
             writer.Flush();
             writer.Close();
         }

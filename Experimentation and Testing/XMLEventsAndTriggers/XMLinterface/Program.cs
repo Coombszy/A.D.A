@@ -77,13 +77,16 @@ namespace XMLinterface
                                 SubEvents.Add(int.Parse(input));
                             }
                         }
+                        Console.Write("\nEnter a command (Nothing for no command):");
+                        string command = Console.ReadLine();
+                        Console.WriteLine();
                         try
                         {
-                            Events[id - 1] = new Event(eventname, id, tree, alwaysawake, triggers, responses, SubEvents);
+                            Events[id - 1] = new Event(eventname, id, tree, alwaysawake, triggers, responses, SubEvents, command);
                         }
                         catch
                         {
-                            Events.Add(new Event(eventname, id, tree, alwaysawake, triggers, responses, SubEvents));
+                            Events.Add(new Event(eventname, id, tree, alwaysawake, triggers, responses, SubEvents, command));
                         }
                     }
                     else if (option == 2)
@@ -115,6 +118,7 @@ namespace XMLinterface
                                 i++;
                                 Console.WriteLine("             " + i + "." + SubEvent);
                             }
+                            Console.WriteLine("     Command:" + TempEvent.command);
                             Console.WriteLine("-------------------------------------------------------------------------------------------");
                         }
                         Console.WriteLine("Press enter to Leave");

@@ -19,6 +19,28 @@ namespace A.D.A_Host
         {
             EventDictionary = MemoryUnit.GetEventsofActiveNode();
         }//To be used by the Voice recog for Language Dictionary to be sent
+
+        /*public string[] GetResponseFromMemoryUnit(string UserEventString)
+        {
+            
+        }*/
+        private string Response(string Event)
+        {
+            if(EventDictionary.Contains(Event))
+            {
+                MemoryUnit.Navigate(Event);
+                buildEventDictionary();
+                return GetAResponse();
+            }
+            else
+            {
+                //Nothing for now!
+                return "FATALERROR IN RESPONSE UserInterpreter.CS";
+            }
+        }
+        
+
+
         public void tempDebug_UserResponse(string D_INPUT)
         {
             if(EventDictionary.Contains(D_INPUT))
@@ -37,7 +59,7 @@ namespace A.D.A_Host
         }//To be overhauled for sending the text info to the interface
         private string GetAResponse()
         {
-            string Response = MemoryUnit.GetTrigger();
+            string Response = MemoryUnit.GetResponse();
             if (Response.Contains("#"))
             {
                 HandleTriggerCode(Response);
@@ -67,7 +89,8 @@ namespace A.D.A_Host
             switch (Command)
             {
                 case "WAKESOUND":
-                    Console.WriteLine("CONSOLEBEEP!");//TEMP WILL PLAY SOUND EFFECT
+                    //Console.WriteLine("CONSOLEBEEP!");//TEMP WILL PLAY SOUND EFFECT
+                    Console.Beep();
                     break;
             }
         }//This system needs to be moved to the Interface connecting to the host

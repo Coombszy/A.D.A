@@ -29,7 +29,7 @@ namespace A.D.A_Host
             LoadingBar MemoryStructureBuilding = new LoadingBar(EventList.Count, EventList.Count, false);
             try
             {
-                while (EventList.Count != 0)
+                while (EventList.Count/2 != 0)
                 {
                     Node Event = EventList[0];
                     if (Event.MySubEventsIds.Count != 0)
@@ -43,7 +43,6 @@ namespace A.D.A_Host
                         EventList.RemoveAll(x => x.MyId == Event.MyId);
                         MemoryStructureBuilding.Draw(EventList.Count);
                     }
-
                 }
                 Console.WriteLine("SUCCESSFULLY BUILT MEMORY UNIT");
                 EventList = null;
@@ -106,7 +105,7 @@ namespace A.D.A_Host
             }
             return Triggers;
         }
-        public string GetTrigger()
+        public string GetResponse()
         {
             string Response = ActiveNode.GetRandomTrigger();
             if (ActiveNode.Terminator)
@@ -115,6 +114,10 @@ namespace A.D.A_Host
             }
             return Response;
         }
+        /*public List<string> GetTriggerAndResponse()
+        {
+            return new List<string> {ActiveNode.,  };
+        }*/
         public bool Navigate(string EventString)
         {
             List<string> EventStrings = GetEventsofActiveNode();

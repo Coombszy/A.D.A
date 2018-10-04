@@ -13,8 +13,9 @@ namespace A.D.A_Host
         public List<string> MyTriggers; //Possible event triggers
         public List<int> MySubEventsIds; //Ids of child events
         public List<Node> MySubEvents; //defines list to allow subnodes to be stored/connected below this node
+        public string MyCommand;//Command to execute
         public bool Terminator = false;//defines and sets the terminator value to false, this is so the structure can no if its the end of a word
-        public Node(string Name, int ID, bool EndofTree, bool Awake, List<string> Events, List<string> Triggers, List<int> SubEventsIds)
+        public Node(string Name, int ID, bool EndofTree, bool Awake, List<string> Events, List<string> Triggers, List<int> SubEventsIds, string Command)
         {
             this.MyName = Name;
             this.MyId = ID;
@@ -23,6 +24,7 @@ namespace A.D.A_Host
             this.MyEvents = Events;
             this.MyTriggers = Triggers;
             this.MySubEventsIds = SubEventsIds;
+            this.MyCommand = Command;
             //Console.WriteLine("NODE ~" + MyName + "~ SubEventIdsCount:" + SubEventsIds.Count);
         }
         public List<string> GetDictionary()
@@ -39,8 +41,15 @@ namespace A.D.A_Host
         }//Gets the Events for Dictionary of all the sub nodes
         public string GetRandomTrigger()
         {
-            Random rnd = new Random();
-            return MyTriggers[rnd.Next(0, MyTriggers.Count)];
+            if (MyTriggers.Capacity == 0)
+            {
+                return "";
+            }
+            else
+            {
+                Random rnd = new Random();
+                return MyTriggers[rnd.Next(0, MyTriggers.Count)];
+            }
         }//returns a random trigger 
         public void LoadInSubEvents(List<Node> SubEventsToAdd)
         {
