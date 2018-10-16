@@ -13,34 +13,54 @@ namespace SocketHandler
     {
         public TcpClient ClientSocket;
         public NetworkStream DataStream;
-        public bool InLobby = false;
-        public string ClientName;
-        public int MyID;
+        private IPAddress TargetIp = IPAddress.Parse("127.0.0.1");
+        private int TargetPort = 3300;
         public SocketHandler()
         {
             ClientSocket = new System.Net.Sockets.TcpClient();
         }
+        public void ConfigSocket(string IpAddress, int Port)
+        {
+            this.TargetIp = IPAddress.Parse(IpAddress);
+            this.TargetPort = Port;
+        }
+        public void StartSocket()
+        {
+            if(Connect())
+            {
+                Console.WriteLine("Successfully Connected to server!");
+
+            }
+        }
+
+
+        //Basic Functions for Socket Interaction
         public void Dispose()
         {
             ClientSocket.Close();
             ClientSocket = null;
             Console.WriteLine("CLIENTSOCKETCLOSED");
         }
-        public void OpenSocket()
+        private bool Connect()
         {
-            ClientSocket = new System.Net.Sockets.TcpClient();
+            try
+            {
+                ClientSocket.Connect(TargetIp, TargetPort);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed To Connect!");
+                Console.WriteLine(e.ToString());
+                return false;
+            }
         }
-        public void Connect(IPAddress Ip, int Port)
+        private void Disconnect()
         {
-            ClientSocket.Connect(Ip, Port);
-        }
-        public void Disconnect()
-        {
-            Console.WriteLine("Disconnect now!");
-            InLobby = false;
+            Console.WriteLine("Disconnecting now!");
             Send("/DISCONNECT");
         }
-        public void Send(string ToSend)
+        private void Send(string ToSend)
         {
             try
             {
@@ -53,7 +73,7 @@ namespace SocketHandler
             }
             catch { }
         }
-        public string Listen()
+        private string Listen()
         {
             byte[] BytesReceived = new byte[1280];
             string DataReceived = null;
