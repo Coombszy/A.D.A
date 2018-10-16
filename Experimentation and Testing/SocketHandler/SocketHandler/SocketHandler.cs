@@ -29,7 +29,22 @@ namespace SocketHandler
             if(Connect())
             {
                 Console.WriteLine("Successfully Connected to server!");
-
+                Console.WriteLine("Please Enter Verification: ");
+                ConsoleColor temp = Console.ForegroundColor;
+                Console.ForegroundColor = Console.BackgroundColor;
+                string Pass = Console.ReadLine();
+                Console.ForegroundColor = (ConsoleColor)temp;
+                Send("HEYSERVER!"+Pass);
+                if (Listen() == "HEYCLIENT!")
+                {
+                    
+                }
+                else
+                {
+                    Console.WriteLine("Verification failed from server");
+                    Console.WriteLine("Program Halted");
+                    Console.ReadLine();
+                }
             }
         }
 
