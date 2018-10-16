@@ -29,20 +29,24 @@ namespace A.D.A_Host
             LoadingBar MemoryStructureBuilding = new LoadingBar(EventList.Count, EventList.Count, false);
             try
             {
-                while (EventList.Count/2 != 0)
+                while (EventList.Count != 0)
                 {
                     Node Event = EventList[0];
-                    if (Event.MySubEventsIds.Count != 0)
-                    {
-                        CollectSubNodes(Event);
-                        MemoryStructureBuilding.Draw(EventList.Count);
-                    }
                     if (Event.AlwaysAwake == true)
                     {
                         MemoryStructure.Add(Event);
                         EventList.RemoveAll(x => x.MyId == Event.MyId);
                         MemoryStructureBuilding.Draw(EventList.Count);
+                        Console.WriteLine("ALWAYSAWAKENODE!");
                     }
+                    else
+                    {
+                        CollectSubNodes(Event);
+                        EventList.RemoveAll(x => x.MyId == Event.MyId);
+                        MemoryStructureBuilding.Draw(EventList.Count);
+                        Console.WriteLine("SUBNODE");
+                    }
+                    Console.ReadLine();
                 }
                 Console.WriteLine("SUCCESSFULLY BUILT MEMORY UNIT");
                 EventList = null;
@@ -70,6 +74,7 @@ namespace A.D.A_Host
             }
             else
             {
+                Console.WriteLine("ActiveNode:" + ActiveNode.MyName);
                 foreach(Node SubEvent in ActiveNode.MySubEvents)
                 {
                     foreach (string EventString in SubEvent.MyEvents)
@@ -168,6 +173,7 @@ namespace A.D.A_Host
                     CollectSubNodes(SubEvent);
                 }
                 Event.LoadInSubEvents(SubNodesToAdd);
+                Console.WriteLine("SUB:"+Event.MySubEvents[0]);
             }
             EventList.RemoveAll(x => Event.MySubEventsIds.Contains(x.MyId));
         }

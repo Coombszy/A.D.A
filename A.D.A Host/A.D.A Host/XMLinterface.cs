@@ -254,14 +254,18 @@ namespace A.D.A_Host
                                         while (reader.NodeType != XmlNodeType.EndElement)
                                         {
                                             reader.Read();
+                                            Console.WriteLine("SUBEVENTS DETECTED!");
+                                            Console.WriteLine("READERVALUE:"+reader.Value);
                                             if (reader.Name == "int")
                                             {
+                                                Console.WriteLine("INT DETECTED!");
                                                 while (reader.NodeType != XmlNodeType.EndElement)
                                                 {
                                                     reader.Read();
                                                     if (reader.NodeType == XmlNodeType.Text)
                                                     {
                                                         subevents.Add(int.Parse(reader.Value));
+                                                        Console.WriteLine("ADD A SUBNODE:" + reader.Value);
                                                     }
                                                 }
                                                 reader.Read();

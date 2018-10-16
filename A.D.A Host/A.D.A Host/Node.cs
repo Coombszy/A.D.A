@@ -25,7 +25,7 @@ namespace A.D.A_Host
             this.MyTriggers = Triggers;
             this.MySubEventsIds = SubEventsIds;
             this.MyCommand = Command;
-            //Console.WriteLine("NODE ~" + MyName + "~ SubEventIdsCount:" + SubEventsIds.Count);
+            Console.WriteLine("NODE ~" + MyName + "~ SubEventIdsCount:" + SubEventsIds.Count + " ~ COMMAND:"+MyCommand);
         }
         public List<string> GetDictionary()
         {
