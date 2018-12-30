@@ -9,21 +9,28 @@ namespace A.D.A_Host
         public string MyName;//Event name (for debug)
         public int MyId; // My event id
         public bool AlwaysAwake; //For sorting, always listening
-        public List<string> MyEvents;//Possible event strings
+        public List<string> MyPhrases;//Possible event strings
         public List<string> MyTriggers; //Possible event triggers
         public List<int> MySubEventsIds; //Ids of child events
         public List<Node> MySubEvents; //defines list to allow subnodes to be stored/connected below this node
         public string MyCommand;//Command to execute
         public bool Terminator = false;//defines and sets the terminator value to false, this is so the structure can no if its the end of a word
-        public Node(string Name, int ID, bool EndofTree, bool Awake, List<string> Events, List<string> Triggers, List<int> SubEventsIds, string Command)
+        public Node(string Name, int ID, bool EndofTree, bool Awake, List<string> Phrases, List<string> Triggers, List<int> SubEventsIds, string Command)
         {
             this.MyName = Name;
             this.MyId = ID;
             this.Terminator = EndofTree;
             this.AlwaysAwake = Awake;
-            this.MyEvents = Events;
+            this.MyPhrases = Phrases;
             this.MyTriggers = Triggers;
+            /*
+            Console.WriteLine("OVERRIDE!");
+            foreach (string trig in MyTriggers)
+            {
+                Console.WriteLine("OVRD:" + trig);
+            }*/
             this.MySubEventsIds = SubEventsIds;
+            this.MySubEvents = new List<Node>();
             this.MyCommand = Command;
             Console.WriteLine("NODE ~" + MyName + "~ SubEventIdsCount:" + SubEventsIds.Count + " ~ COMMAND:"+MyCommand);
         }
@@ -32,7 +39,7 @@ namespace A.D.A_Host
             List<string> TempList = new List<string>();
             foreach(object SubEvent in MySubEvents)
             {
-                foreach(string EventDictionaryString in ((Node)SubEvent).MyEvents)
+                foreach(string EventDictionaryString in ((Node)SubEvent).MyPhrases)
                 {
                     TempList.Add(EventDictionaryString);
                 }
@@ -55,7 +62,7 @@ namespace A.D.A_Host
         {
             try
             {
-                this.MySubEvents = SubEventsToAdd;
+                this.MySubEvents.AddRange(SubEventsToAdd);
             }
             catch (Exception e)
             {

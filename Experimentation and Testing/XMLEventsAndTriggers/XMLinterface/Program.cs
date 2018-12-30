@@ -35,7 +35,21 @@ namespace XMLinterface
                         bool tree = bool.Parse(Console.ReadLine());
                         Console.Write("\nEnter always awake bool (true/false):");
                         bool alwaysawake = bool.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter triggers now, enter // to finish");
+                        Console.WriteLine("Enter phrases now, enter // to finish");
+                        List<string> phrases = new List<string>();
+                        while (true)
+                        {
+                            string input = Console.ReadLine();
+                            if (input == "//")
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                phrases.Add(input);
+                            }
+                        }
+                        Console.WriteLine("Enter responses now, enter // to finish");
                         List<string> triggers = new List<string>();
                         while (true)
                         {
@@ -47,20 +61,6 @@ namespace XMLinterface
                             else
                             {
                                 triggers.Add(input);
-                            }
-                        }
-                        Console.WriteLine("Enter responses now, enter // to finish");
-                        List<string> responses = new List<string>();
-                        while (true)
-                        {
-                            string input = Console.ReadLine();
-                            if (input == "//")
-                            {
-                                break;
-                            }
-                            else
-                            {
-                                responses.Add(input);
                             }
                         }
                         Console.WriteLine("Enter SubEvents now, enter // to finish");
@@ -82,11 +82,11 @@ namespace XMLinterface
                         Console.WriteLine();
                         try
                         {
-                            Events[id - 1] = new Event(eventname, id, tree, alwaysawake, triggers, responses, SubEvents, command);
+                            Events[id - 1] = new Event(eventname, id, tree, alwaysawake, triggers, phrases, SubEvents, command);
                         }
                         catch
                         {
-                            Events.Add(new Event(eventname, id, tree, alwaysawake, triggers, responses, SubEvents, command));
+                            Events.Add(new Event(eventname, id, tree, alwaysawake, triggers, phrases, SubEvents, command));
                         }
                     }
                     else if (option == 2)
@@ -97,19 +97,19 @@ namespace XMLinterface
                             Console.WriteLine("  Event Name:" + TempEvent.ename);
                             Console.WriteLine(" End Of Tree:" + TempEvent.tree);
                             Console.WriteLine("Always Awake:" + TempEvent.alwaysawake);
-                            Console.WriteLine("    Triggers:");
+                            Console.WriteLine("    Responses:");
                             int i = 0;
-                            foreach (string Trigger in TempEvent.triggers)
+                            foreach (string res in TempEvent.phrases)
                             {
                                 i++;
-                                Console.WriteLine("             " + i + "." + Trigger);
+                                Console.WriteLine("             " + i + "." + res);
                             }
-                            Console.WriteLine("   Responses:");
+                            Console.WriteLine("   Triggers:");
                             i = 0;
-                            foreach (string Response in TempEvent.responses)
+                            foreach (string trig in TempEvent.triggers)
                             {
                                 i++;
-                                Console.WriteLine("             " + i + "." + Response);
+                                Console.WriteLine("             " + i + "." + trig);
                             }
                             Console.WriteLine("   SubEvents:");
                             i = 0;
@@ -128,7 +128,7 @@ namespace XMLinterface
                     {
                         try
                         {
-                            Interface.SaveEvents(Interface.ConvertListToArray(Events));
+                            Interface.SaveXML(Interface.ConvertListToArray(Events));
                             Console.WriteLine("Saved!");
                             Console.ReadLine();
                         }

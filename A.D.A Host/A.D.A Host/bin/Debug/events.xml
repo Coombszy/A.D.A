@@ -1,38 +1,102 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--XML INTERFACE - List of events-->
+<!--A.D.A Project - MASTER Event list-->
 <EVENTS>
   <EVENT ID="1" Name="wake-greeting">
-    <tree>False</tree>
-    <alwaysawake>True</alwaysawake>
-    <triggerstrings>
+    <Tree>False</Tree>
+    <AlwaysAwake>True</AlwaysAwake>
+    <Phrases>
       <string>hey ada</string>
       <string>hello ada</string>
       <string>okay ada</string>
-    </triggerstrings>
-    <responsestrings />
-    <subevents>
+    </Phrases>
+    <SubEvents>
       <int>2</int>
-    </subevents>
-    <command>#H:WAKESOUND#</command>
+      <int>3</int>
+      <int>4</int>
+	  <int>5</int>
+    </SubEvents>
+    <Command>#H:WAKESOUND#</Command>
   </EVENT>
   <EVENT ID="2" Name="howareyou">
-    <tree>True</tree>
-    <alwaysawake>False</alwaysawake>
-    <triggerstrings>
+    <Tree>True</Tree>
+    <AlwaysAwake>False</AlwaysAwake>
+    <Phrases>
       <string>how are you</string>
       <string>how are you doing</string>
       <string>how are you feeling</string>
       <string>how are you doing today</string>
       <string>how are you feeling today</string>
-    </triggerstrings>
-    <responsestrings>
+    </Phrases>
+    <Triggers>
       <string>i'm good</string>
       <string>i'm great!</string>
       <string>i'm feeling fab!</string>
       <string>i'm grand</string>
       <string>honestly, it's a bit cold in here!</string>
-    </responsestrings>
-    <subevents />
-    <command />
+    </Triggers>
+  </EVENT>
+  <EVENT ID="3" Name="whocreatedyou">
+    <Tree>True</Tree>
+    <AlwaysAwake>False</AlwaysAwake>
+    <Phrases>
+      <string>who created you</string>
+      <string>who made you</string>
+    </Phrases>
+    <Triggers>
+      <string>i was not created, i wished myself into existence</string>
+      <string>that's none of your business</string>
+    </Triggers>
+  </EVENT>
+  <EVENT ID="4" Name="betterthan">
+    <Tree>True</Tree>
+    <AlwaysAwake>False</AlwaysAwake>
+    <Phrases>
+      <string>are you better than google</string>
+      <string>are you better than siri</string>
+      <string>are you better than alexa</string>
+      <string>are you better than hal</string>
+      <string>are you better than any other ai</string>
+      <string>are you better than any other home assistant</string>
+    </Phrases>
+    <Triggers>
+      <string>hmm, tough question. i would like to think that we all have our own unique features</string>
+      <string>hmm, tough question. i would like to think that we all have our own strong points</string>
+    </Triggers>
+  </EVENT>
+  <EVENT ID="5" Name="shutdownstart">
+    <Tree>False</Tree>
+    <AlwaysAwake>False</AlwaysAwake>
+    <Phrases>
+      <string>shutdown</string>
+      <string>shut down</string>
+    </Phrases>
+    <Triggers>
+      <string>are you sure? yes or no</string>
+    </Triggers>
+    <SubEvents>
+      <int>6</int>
+	  <int>7</int>
+    </SubEvents>
+  </EVENT>
+  <EVENT ID="6" Name="shutdownconfirm">
+    <Tree>True</Tree>
+    <AlwaysAwake>False</AlwaysAwake>
+    <Phrases>
+      <string>yes</string>
+    </Phrases>
+    <Triggers>
+      <string>shutting down interface, goodbye</string>
+    </Triggers>
+    <Command>#H:SHUTDOWN#</Command>
+  </EVENT>
+  <EVENT ID="7" Name="shutdowncancel">
+    <Tree>True</Tree>
+    <AlwaysAwake>False</AlwaysAwake>
+    <Phrases>
+      <string>no</string>
+    </Phrases>
+    <Triggers>
+      <string>shutdown aborted</string>
+    </Triggers>
   </EVENT>
 </EVENTS>

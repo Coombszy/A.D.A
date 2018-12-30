@@ -13,8 +13,10 @@ namespace A.D.A_Host
         {
             try
             {
-                XMLinterface XmlReader = new XMLinterface("events.xml");
-                EventList = XmlReader.ReadXML();
+                XMLInterface XmlReader = new XMLInterface("events.xml");
+                XmlReader.ReadXML();
+                EventList = XmlReader.EventData;
+                Console.WriteLine("TOTAL EVENTS FOUND:" + EventList.Count);
             }
             catch (Exception e)
             {
@@ -37,16 +39,24 @@ namespace A.D.A_Host
                         MemoryStructure.Add(Event);
                         EventList.RemoveAll(x => x.MyId == Event.MyId);
                         MemoryStructureBuilding.Draw(EventList.Count);
-                        Console.WriteLine("ALWAYSAWAKENODE!");
+                        //Console.WriteLine("ALWAYSAWAKENODE!");
                     }
                     else
                     {
                         CollectSubNodes(Event);
+                        foreach(Node Established in MemoryStructure)
+                        {
+                            if (Established.MySubEventsIds.Contains(Event.MyId))
+                            {
+                                Established.LoadInSubEvents(new List<Node> { Event });
+                                break;
+                            }
+              
+                        }
                         EventList.RemoveAll(x => x.MyId == Event.MyId);
                         MemoryStructureBuilding.Draw(EventList.Count);
-                        Console.WriteLine("SUBNODE");
+                        //Console.WriteLine("SUBNODE");
                     }
-                    Console.ReadLine();
                 }
                 Console.WriteLine("SUCCESSFULLY BUILT MEMORY UNIT");
                 EventList = null;
@@ -66,7 +76,7 @@ namespace A.D.A_Host
             {
                 foreach(Node Event in MemoryStructure)
                 {
-                    foreach(string EventString in Event.MyEvents)
+                    foreach(string EventString in Event.MyPhrases)
                     {
                         Events.Add(EventString);
                     }
@@ -74,10 +84,9 @@ namespace A.D.A_Host
             }
             else
             {
-                Console.WriteLine("ActiveNode:" + ActiveNode.MyName);
                 foreach(Node SubEvent in ActiveNode.MySubEvents)
                 {
-                    foreach (string EventString in SubEvent.MyEvents)
+                    foreach (string EventString in SubEvent.MyPhrases)
                     {
                         Events.Add(EventString);
                     }
@@ -113,17 +122,14 @@ namespace A.D.A_Host
         public string GetResponse()
         {
             string Response = ActiveNode.GetRandomTrigger();
+
             if (ActiveNode.Terminator)
             {
                 ActiveNode = null;
             }
             return Response;
         }
-        /*public List<string> GetTriggerAndResponse()
-        {
-            return new List<string> {ActiveNode.,  };
-        }*/
-        public bool Navigate(string EventString)
+        public bool NavigateOLD(string EventString)
         {
             List<string> EventStrings = GetEventsofActiveNode();
             if(EventStrings.Contains(EventString))
@@ -132,7 +138,7 @@ namespace A.D.A_Host
                 {
                     foreach(Node Event in MemoryStructure)
                     {
-                        foreach(string String in Event.MyEvents)
+                        foreach(string String in Event.MyPhrases)
                         {
                             if(String == EventString)
                             {
@@ -147,7 +153,31 @@ namespace A.D.A_Host
                 {
                     foreach (Node Event in ActiveNode.MySubEvents)
                     {
-                        foreach (string String in Event.MyEvents)
+                        foreach (string String in Event.MyPhrases)
+                        {
+                            Console.WriteLine(":" + String);
+                            if (String == EventString)
+                            {
+                                ActiveNode = Event;
+                                return true;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            return false;
+        }
+        public bool Navigate(string EventString)
+        {
+            List<string> EventStrings = GetEventsofActiveNode();
+            if (EventStrings.Contains(EventString))
+            {
+                if (ActiveNode == null)
+                {
+                    foreach (Node Event in MemoryStructure)
+                    {
+                        foreach (string String in Event.MyPhrases)
                         {
                             if (String == EventString)
                             {
@@ -156,6 +186,20 @@ namespace A.D.A_Host
                             }
                         }
                         break;
+                    }
+                }
+                else if (ActiveNode.Terminator == false)
+                {
+                    foreach (Node Event in ActiveNode.MySubEvents)
+                    {
+                        foreach (string String in Event.MyPhrases)
+                        {
+                            if (String == EventString)
+                            {
+                                ActiveNode = Event;
+                                return true;
+                            }
+                        }
                     }
                 }
             }
@@ -173,7 +217,6 @@ namespace A.D.A_Host
                     CollectSubNodes(SubEvent);
                 }
                 Event.LoadInSubEvents(SubNodesToAdd);
-                Console.WriteLine("SUB:"+Event.MySubEvents[0]);
             }
             EventList.RemoveAll(x => Event.MySubEventsIds.Contains(x.MyId));
         }

@@ -43,18 +43,25 @@ namespace A.D.A_Host
 
         public void tempDebug_UserResponse(string D_INPUT)
         {
+            buildEventDictionary();
             if(EventDictionary.Contains(D_INPUT))
             {
                 MemoryUnit.Navigate(D_INPUT);
+                Console.WriteLine("NAVIGATED! : " +MemoryUnit.ActiveNode.MyName);//------------- SEE WHICH NODES ARE BEING NAVIGATED TOO ------------ 
                 tempDebug_SendToUser(GetAResponse());
                 buildEventDictionary();
+                /*
+                foreach (string aa in EventDictionary)
+                {
+                    Console.WriteLine("     str:" + aa);
+                }*/ // --------------------------------------------------------SEE WHAT PHRASES ARE CURRENTLY ACCEPTABLE----------------
             }
         }//To be completly Overhauled to use RecEngine for user voice to string 
         private void tempDebug_SendToUser(string text)
         {
             if (text != "")
             {
-                Console.WriteLine(text);
+                Console.WriteLine("A.D.A ~ "+text);
             }
         }//To be overhauled for sending the text info to the interface
         private string GetAResponse()
