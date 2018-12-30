@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XMLinterface
+namespace A.D.A_Host
 {
     class Event
     {
@@ -23,10 +23,10 @@ namespace XMLinterface
         public int id;
         public bool tree;
         public bool alwaysawake;
-        public List<string> triggers;
-        public List<string> phrases;
-        public List<int> subEvents;
-        public string command;
+        public List<string> phrases;//What the users does/says
+        public List<string> triggers;//How ada will react
+        public List<int> subEvents;//Next events in the tree
+        public string command;//Issues a command from the tree
 
     }
 }
