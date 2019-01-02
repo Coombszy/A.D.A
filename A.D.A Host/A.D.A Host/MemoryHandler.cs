@@ -129,7 +129,14 @@ namespace A.D.A_Host
             }
             return Response;
         }
-        public bool NavigateOLD(string EventString)
+        public string GetCommand()
+        {
+            if (ActiveNode == null)
+            { return ""; }
+            return ActiveNode.MyCommand;
+            
+        }
+        /*public bool NavigateOLD(string EventString)
         {
             List<string> EventStrings = GetEventsofActiveNode();
             if(EventStrings.Contains(EventString))
@@ -167,7 +174,7 @@ namespace A.D.A_Host
                 }
             }
             return false;
-        }
+        }*/
         public bool Navigate(string EventString)
         {
             List<string> EventStrings = GetEventsofActiveNode();

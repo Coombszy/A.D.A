@@ -13,7 +13,8 @@
       <int>2</int>
       <int>3</int>
       <int>4</int>
-	  <int>5</int>
+      <int>5</int>
+	  <int>8</int>
     </SubEvents>
     <Command>#H:WAKESOUND#</Command>
   </EVENT>
@@ -75,7 +76,7 @@
     </Triggers>
     <SubEvents>
       <int>6</int>
-	  <int>7</int>
+      <int>7</int>
     </SubEvents>
   </EVENT>
   <EVENT ID="6" Name="shutdownconfirm">
@@ -98,5 +99,13 @@
     <Triggers>
       <string>shutdown aborted</string>
     </Triggers>
+  </EVENT>
+  <EVENT ID="8" Name="mariotime">
+    <Tree>True</Tree>
+    <AlwaysAwake>False</AlwaysAwake>
+    <Phrases>
+      <string>is it mario time</string>
+    </Phrases>
+    <Command>#H:MARIOTIME#</Command>
   </EVENT>
 </EVENTS>
