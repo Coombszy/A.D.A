@@ -8,29 +8,29 @@ using System.Net;
 
 namespace SocketHandler
 {
-    public class SocketHandler
+    class ClientHandler
     {
         public TcpClient ClientSocket;
         public NetworkStream DataStream;
-        private IPAddress TargetIp = IPAddress.Parse("127.0.0.1");
-        private int TargetPort = 25565;
-        public SocketHandler()
+        
+        public ClientHandler(TcpClient MySocket)
         {
-            ClientSocket = new System.Net.Sockets.TcpClient();
+            //per client instancing - Put ai structure connection here!
+            this.ClientSocket = MySocket;
+
+            //-----------------------------
+            MainLoop();
         }
-        public void ConfigSocket(string IpAddress, int Port)
+        public void MainLoop()
         {
-            this.TargetIp = IPAddress.Parse(IpAddress);
-            this.TargetPort = Port;
-        }
-        public void StartSocket()
-        {
-            if(Connect())
+            string Received;
+            while (true)
             {
-                Console.WriteLine("Successfully Connected to server!");
+                Received = Listen();
+                Received = "BOUNCEBACK : " + Received;
+                Send(Received);
             }
         }
-
 
         //Basic Functions for Socket Interaction
         public void Dispose()
@@ -39,32 +39,18 @@ namespace SocketHandler
             ClientSocket = null;
             Console.WriteLine("CLIENTSOCKETCLOSED");
         }
-        private bool Connect()
-        {
-            try
-            {
-                ClientSocket.Connect(TargetIp, TargetPort);
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Failed To Connect!");
-                Console.WriteLine(e.ToString());
-                return false;
-            }
-        }
         private void Disconnect()
         {
             Console.WriteLine("Disconnecting now!");
             Send("/DISCONNECT");
         }
-        public void Send(string ToSend)
+        private void Send(string ToSend)
         {
             try
             {
                 NetworkStream SendStream = ClientSocket.GetStream();
                 string data = ToSend;
-                //Console.WriteLine("ISent=" + data); debuig to make sure the correct data is sent
+                Console.WriteLine("ISent=" + data);
                 byte[] outStream = System.Text.Encoding.ASCII.GetBytes(data + "$");
                 SendStream.Write(outStream, 0, outStream.Length);
                 SendStream.Flush();
@@ -100,7 +86,7 @@ namespace SocketHandler
             }
             return DataReceived;
         }
-        public string Listen()
+        private string Listen()
         {
             byte[] BytesReceived = new byte[1280];
             string DataReceived = null;
