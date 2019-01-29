@@ -21,26 +21,43 @@ namespace A.D.A_Host
             EventDictionary = MemoryUnit.GetEventsofActiveNode();
         }//To be used by the Voice recog for Language Dictionary to be sent
 
-        /*public string[] GetResponseFromMemoryUnit(string UserEventString)
+        public string Response(string D_INPUT)
         {
-            
-        }*/
-        private string Response(string Event)
-        {
-            if(EventDictionary.Contains(Event))
+            buildEventDictionary();
+            if (EventDictionary.Contains(D_INPUT))
             {
-                MemoryUnit.Navigate(Event);
+                MemoryUnit.Navigate(D_INPUT);
+                //Console.WriteLine("NAVIGATED! : " + MemoryUnit.ActiveNode.MyName);//------------- SEE WHICH NODES ARE BEING NAVIGATED TOO ------------ 
                 buildEventDictionary();
                 return GetAResponse();
+                /*
+                foreach (string aa in EventDictionary)
+                {
+                    Console.WriteLine("     str:" + aa);
+                }*/ // --------------------------------------------------------SEE WHAT PHRASES ARE CURRENTLY ACCEPTABLE----------------
             }
             else
             {
-                //Nothing for now!
-                return "FATALERROR IN RESPONSE UserInterpreter.CS";
+                return "";
             }
+        }//To be completly Overhauled to use RecEngine for user voice to string 
+        private string GetAResponse()
+        {
+            string Command = MemoryUnit.GetCommand();
+            string Response = MemoryUnit.GetResponse();
+            if (Command.Contains("#"))
+            {
+                HandleTriggerCode(Command);
+                //int start = Response.IndexOf('#') + 1;
+                //int end = Response.IndexOf('#', start);
+                //Response = Response.Substring(end+1, Command.Length-(end+1));
+            }
+            if (Response != "")
+            {
+                return (Response);
+            }
+            return "";
         }
-        
-
 
         public void tempDebug_UserResponse(string D_INPUT)
         {
@@ -65,23 +82,6 @@ namespace A.D.A_Host
                 Console.WriteLine("A.D.A ~ "+text);
             }
         }//To be overhauled for sending the text info to the interface
-        private string GetAResponse()
-        {
-            string Command = MemoryUnit.GetCommand();
-            string Response = MemoryUnit.GetResponse();
-            if (Command.Contains("#"))
-            {
-                HandleTriggerCode(Command);
-                //int start = Response.IndexOf('#') + 1;
-                //int end = Response.IndexOf('#', start);
-                //Response = Response.Substring(end+1, Command.Length-(end+1));
-            }
-            if(Response != "")
-            {
-                return(Response);
-            }
-            return "";
-        }
         private void HandleTriggerCode(string Data)
         {
             int start = Data.IndexOf('#') + 1;

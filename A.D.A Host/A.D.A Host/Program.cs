@@ -13,11 +13,12 @@ namespace A.D.A_Host
             MemoryHandler MemoryUnit = new MemoryHandler();
             MemoryUnit.BuildEventList();
             MemoryUnit.BuildMemoryStructure();
-            UserInterpreter test = new UserInterpreter(MemoryUnit);
-            while(true)
-            {
-                test.tempDebug_UserResponse(Console.ReadLine());
-            }
+            Console.WriteLine("Press Enter to Continue...");
+            Console.ReadLine();
+            Console.Clear();
+            ServerHandler Server = new ServerHandler(ref MemoryUnit);
+            Server.StartHandler();
+            Console.WriteLine("END OF PROGRAM!");
             Console.ReadLine();
         }
     }

@@ -48,7 +48,13 @@ namespace SocketHandler
                 {
                     Input = Console.ReadLine();
                     Client.Send(Input);
-                    Console.WriteLine(Client.Listen());
+                    var Temp = Client.Listen();
+                    Console.WriteLine(Temp.Response);
+                    Console.WriteLine("Dict:");
+                    foreach(string dictent in Temp.Dictionary)
+                    {
+                        Console.WriteLine("     -" + dictent);
+                    }
                 }
             }
             else if (option == 3)
@@ -60,7 +66,7 @@ namespace SocketHandler
                 {
                     RandomString = GetRandom(10);
                     Client.Send(RandomString);
-                    if(Client.Listen().Contains(RandomString))
+                    if(Client.Listen().Response.Contains(RandomString))
                     {
                         Console.WriteLine(RandomString + " : Passed!");
                     }

@@ -9,6 +9,20 @@ namespace A.D.A_Host
         private List<Node> MemoryStructure = new List<Node>();
         private List<Node> EventList;
         public Node ActiveNode; // -------------------------MAKE ME PRIVATE (PUBLIC FOR DEBUG)----------------
+        private List<string> EventDictionary;
+
+        public struct ActiveNodeData
+        {
+            public string Command, Response;
+            public List<string> Dictionary;
+            public ActiveNodeData(string Command_, string Response_, List<string> Dictionary_)
+            {
+                Command = Command_;
+                Response = Response_;
+                Dictionary = Dictionary_;
+            }
+        }
+
         public void BuildEventList()
         {
             try
@@ -212,6 +226,35 @@ namespace A.D.A_Host
             }
             return false;
         }
+
+        public ActiveNodeData Response(string UserInput)
+        {
+            EventDictionary = GetEventsofActiveNode();
+            if (EventDictionary.Contains(UserInput))
+            {
+                Navigate(UserInput);
+                //Console.WriteLine("NAVIGATED! : " + MemoryUnit.ActiveNode.MyName);//------------- SEE WHICH NODES ARE BEING NAVIGATED TOO ------------ 
+                EventDictionary = GetEventsofActiveNode();
+                return GetAResponse();
+                /*
+                foreach (string aa in EventDictionary)
+                {
+                    Console.WriteLine("     str:" + aa);
+                }*/ // --------------------------------------------------------SEE WHAT PHRASES ARE CURRENTLY ACCEPTABLE----------------
+            }
+            else
+            {
+                return new ActiveNodeData("#H:UNKNOWN#", "", new List<string>());
+            }
+        }//To be completly Overhauled to use RecEngine for user voice to string 
+        private ActiveNodeData GetAResponse()
+        {
+            string Command = GetCommand();
+            string Response = GetResponse();
+            
+            return new ActiveNodeData(Command, Response, EventDictionary);
+        }
+
         private void CollectSubNodes(Node Event)
         {
             List<Node> SubNodesToAdd;
