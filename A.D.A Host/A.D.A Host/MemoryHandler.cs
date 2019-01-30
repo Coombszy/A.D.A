@@ -8,7 +8,7 @@ namespace A.D.A_Host
     {
         private List<Node> MemoryStructure = new List<Node>();
         private List<Node> EventList;
-        public Node ActiveNode; // -------------------------MAKE ME PRIVATE (PUBLIC FOR DEBUG)----------------
+        private Node ActiveNode; // -------------------------MAKE ME PRIVATE (PUBLIC FOR DEBUG)----------------
         private List<string> EventDictionary;
 
         public struct ActiveNodeData
@@ -227,6 +227,16 @@ namespace A.D.A_Host
             return false;
         }
 
+        //For cloning memory structures
+        public List<Node> ReturnMyMemoryStructure()
+        {
+            return MemoryStructure;
+        }
+        public void SetMemoryStructure(List<Node> NewStructure)
+        {
+            this.MemoryStructure = NewStructure;
+        }
+
         public ActiveNodeData Response(string UserInput)
         {
             EventDictionary = GetEventsofActiveNode();
@@ -246,7 +256,7 @@ namespace A.D.A_Host
             {
                 return new ActiveNodeData("#H:UNKNOWN#", "", new List<string>());
             }
-        }//To be completly Overhauled to use RecEngine for user voice to string 
+        }
         private ActiveNodeData GetAResponse()
         {
             string Command = GetCommand();

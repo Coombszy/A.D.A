@@ -15,7 +15,7 @@ namespace SocketHandler
         public TcpClient ClientSocket;
         public NetworkStream DataStream;
         private IPAddress TargetIp = IPAddress.Parse("127.0.0.1");
-        private int TargetPort = 25565;
+        private int TargetPort = 3300;
         public SocketHandler()
         {
             ClientSocket = new System.Net.Sockets.TcpClient();

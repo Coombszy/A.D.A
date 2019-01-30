@@ -17,6 +17,7 @@ namespace A.D.A_Host
             Console.ReadLine();
             Console.Clear();
             ServerHandler Server = new ServerHandler(ref MemoryUnit);
+            Server.PortNumber = 3300;
             Server.StartHandler();
             Console.WriteLine("END OF PROGRAM!");
             Console.ReadLine();

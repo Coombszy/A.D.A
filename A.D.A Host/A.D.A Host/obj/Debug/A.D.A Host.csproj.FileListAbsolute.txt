@@ -12,3 +12,10 @@ C:\FileTransfer\A.D.A\A.D.A Host\A.D.A Host\obj\Debug\A.D.A Host.pdb
 C:\FileTransfer\A.D.A\A.D.A Host\A.D.A Host\bin\Debug\A.D.A Host.exe.config
 C:\FileTransfer\A.D.A\A.D.A Host\A.D.A Host\bin\Debug\A.D.A Host.exe
 C:\FileTransfer\A.D.A\A.D.A Host\A.D.A Host\bin\Debug\A.D.A Host.pdb
+C:\Users\liamdarrengeorge.coo\Desktop\Apprenticeship\Coding Practise\A.D.A\A.D.A Host\A.D.A Host\bin\Debug\A.D.A Host.exe.config
+C:\Users\liamdarrengeorge.coo\Desktop\Apprenticeship\Coding Practise\A.D.A\A.D.A Host\A.D.A Host\bin\Debug\A.D.A Host.exe
+C:\Users\liamdarrengeorge.coo\Desktop\Apprenticeship\Coding Practise\A.D.A\A.D.A Host\A.D.A Host\bin\Debug\A.D.A Host.pdb
+C:\Users\liamdarrengeorge.coo\Desktop\Apprenticeship\Coding Practise\A.D.A\A.D.A Host\A.D.A Host\obj\Debug\A.D.A Host.csprojAssemblyReference.cache
+C:\Users\liamdarrengeorge.coo\Desktop\Apprenticeship\Coding Practise\A.D.A\A.D.A Host\A.D.A Host\obj\Debug\A.D.A Host.csproj.CoreCompileInputs.cache
+C:\Users\liamdarrengeorge.coo\Desktop\Apprenticeship\Coding Practise\A.D.A\A.D.A Host\A.D.A Host\obj\Debug\A.D.A Host.exe
+C:\Users\liamdarrengeorge.coo\Desktop\Apprenticeship\Coding Practise\A.D.A\A.D.A Host\A.D.A Host\obj\Debug\A.D.A Host.pdb

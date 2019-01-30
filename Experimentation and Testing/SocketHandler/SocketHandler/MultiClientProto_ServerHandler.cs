@@ -12,7 +12,7 @@ namespace SocketHandler
     class ServerHandler
     {
         TcpListener HostSocket; //Host socket to allow incoming connections
-        public int PortNumber = 25565; //Port to listen to
+        public int PortNumber = 3300; //Port to listen to
         private List<Thread> ConnectedClients; // List containing the threads with 
         private TcpClient TempSocket; //temporary location to store an accepted new client
         public void StartHandler()

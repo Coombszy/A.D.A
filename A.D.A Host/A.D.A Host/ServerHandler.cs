@@ -15,11 +15,11 @@ namespace A.D.A_Host
         public int PortNumber = 25565; //Port to listen to
         private List<Thread> ConnectedClients; // List containing the threads with 
         private TcpClient TempSocket; //temporary location to store an accepted new client
-        private MemoryHandler MemoryUnit;
+        private MemoryHandler MasterMemoryUnit;
  
         public ServerHandler(ref MemoryHandler MainMemoryUnit)
         {
-            this.MemoryUnit = MainMemoryUnit;
+            this.MasterMemoryUnit = MainMemoryUnit;
         }
         public void StartHandler()
         {
@@ -54,7 +54,7 @@ namespace A.D.A_Host
         }//This will hold up the entire thread
         private void CreateClientThread()
         {
-            ClientHandler Client = new ClientHandler(TempSocket, ref this.MemoryUnit);
+            ClientHandler Client = new ClientHandler(TempSocket, ref this.MasterMemoryUnit);
         }
     }
 }

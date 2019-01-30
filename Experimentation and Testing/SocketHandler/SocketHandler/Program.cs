@@ -50,6 +50,7 @@ namespace SocketHandler
                     Client.Send(Input);
                     var Temp = Client.Listen();
                     Console.WriteLine(Temp.Response);
+                    Console.WriteLine("Comd:" + Temp.Command);
                     Console.WriteLine("Dict:");
                     foreach(string dictent in Temp.Dictionary)
                     {

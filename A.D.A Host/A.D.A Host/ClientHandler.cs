@@ -29,11 +29,12 @@ namespace A.D.A_Host
         private MemoryHandler MemoryUnit;
         private bool Connected;
         
-        public ClientHandler(TcpClient MySocket, ref MemoryHandler MainMemoryUnit)
+        public ClientHandler(TcpClient MySocket, ref MemoryHandler MyMemoryUnit)
         {
             //per client instancing - Put ai structure connection here!
             this.ClientSocket = MySocket;
-            this.MemoryUnit = MainMemoryUnit;
+            this.MemoryUnit = new MemoryHandler();
+            this.MemoryUnit.SetMemoryStructure(MyMemoryUnit.ReturnMyMemoryStructure());
             //-----------------------------
             Console.WriteLine(" >> Client Successfully connected!");
             Connected = true;
@@ -56,7 +57,7 @@ namespace A.D.A_Host
                 //Response = "A.D.A ~ " + MemoryUnit.Response(Received);
                 //Send(Response);
             }
-            Console.WriteLine(" >> A Client has Disconnected");
+            Console.WriteLine(" >> Client has Disconnected");
         }
 
         //Basic Functions for Socket Interaction

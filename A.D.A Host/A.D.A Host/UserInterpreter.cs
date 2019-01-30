@@ -65,7 +65,7 @@ namespace A.D.A_Host
             if(EventDictionary.Contains(D_INPUT))
             {
                 MemoryUnit.Navigate(D_INPUT);
-                Console.WriteLine("NAVIGATED! : " +MemoryUnit.ActiveNode.MyName);//------------- SEE WHICH NODES ARE BEING NAVIGATED TOO ------------ 
+                //Console.WriteLine("NAVIGATED! : " +MemoryUnit.ActiveNode.MyName);//------------- SEE WHICH NODES ARE BEING NAVIGATED TOO ------------ 
                 tempDebug_SendToUser(GetAResponse());
                 buildEventDictionary();
                 /*
