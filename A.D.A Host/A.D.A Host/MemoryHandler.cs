@@ -252,6 +252,11 @@ namespace A.D.A_Host
                     Console.WriteLine("     str:" + aa);
                 }*/ // --------------------------------------------------------SEE WHAT PHRASES ARE CURRENTLY ACCEPTABLE----------------
             }
+            else if(UserInput.ToLower() == "stop listening")
+            {
+                ActiveNode = null;
+                return new ActiveNodeData("#H:STOPLISTEN#", "", new List<string>());
+            }
             else
             {
                 return new ActiveNodeData("#H:UNKNOWN#", "", new List<string>());

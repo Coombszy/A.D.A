@@ -7,56 +7,42 @@ using System.Net.Sockets;
 using System.Net;
 using System.Xml.Serialization;
 using System.IO;
-using System.Threading;
 
-namespace A.D.A_Host
+namespace A.D.A_Client_ConsoleTest
 {
-    public struct ActiveNodeData
-    {
-        public string Command, Response;
-        public List<string> Dictionary;
-        public ActiveNodeData(string Command_, string Response_, List<string> Dictionary_)
-        {
-            Command = Command_;
-            Response = Response_;
-            Dictionary = Dictionary_;
-        }
-    }
-    class ClientHandler
+    public class SocketHandler
     {
         public TcpClient ClientSocket;
         public NetworkStream DataStream;
-        private MemoryHandler MemoryUnit;
-        private bool Connected;
-        
-        public ClientHandler(TcpClient MySocket, ref MemoryHandler MyMemoryUnit)
+        private IPAddress TargetIp = IPAddress.Parse("127.0.0.1");
+        private int TargetPort = 3300;
+        public SocketHandler()
         {
-            this.ClientSocket = MySocket;
-            this.MemoryUnit = new MemoryHandler();
-            this.MemoryUnit.SetMemoryStructure(MyMemoryUnit.ReturnMyMemoryStructure());
-            //-----------------------------
-            Console.WriteLine(" >> Client Successfully connected!");
-            Connected = true;
-            MainLoop();
+            ClientSocket = new System.Net.Sockets.TcpClient();
         }
-        public void MainLoop()
+        public void ConfigSocket(string IpAddress, int Port)
         {
-            string Received;
-            while (Connected)
+            this.TargetIp = IPAddress.Parse(IpAddress);
+            this.TargetPort = Port;
+        }
+        public void StartSocket()
+        {
+            if(Connect())
             {
-                Received = Listen();
-                if (ClientSocket.Connected == false)
-                {
-                    Connected = false;
-                    break;
-                }
-                var temp = MemoryUnit.Response(Received);
-                SendActiveNodeData(new ActiveNodeData(temp.Command, temp.Response, temp.Dictionary));
-
-                //Response = "A.D.A ~ " + MemoryUnit.Response(Received);
-                //Send(Response);
+                Console.WriteLine("Successfully Connected to server!");
             }
-            Console.WriteLine(" >> Client has Disconnected");
+        }
+
+        public struct ActiveNodeData
+        {
+            public string Command, Response;
+            public List<string> Dictionary;
+            public ActiveNodeData(string Command_, string Response_, List<string> Dictionary_)
+            {
+                Command = Command_;
+                Response = Response_;
+                Dictionary = Dictionary_;
+            }
         }
 
         //Basic Functions for Socket Interaction
@@ -66,39 +52,37 @@ namespace A.D.A_Host
             ClientSocket = null;
             Console.WriteLine("CLIENTSOCKETCLOSED");
         }
+        private bool Connect()
+        {
+            try
+            {
+                ClientSocket.Connect(TargetIp, TargetPort);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed To Connect!");
+                Console.WriteLine(e.ToString());
+                return false;
+            }
+        }
         private void Disconnect()
         {
             Console.WriteLine("Disconnecting now!");
             Send("/DISCONNECT");
         }
-        private void Send(string ToSend)
+        public void Send(string ToSend)
         {
             try
             {
                 NetworkStream SendStream = ClientSocket.GetStream();
                 string data = ToSend;
-                Console.WriteLine("ISent=" + data);
-                byte[] outStream = System.Text.Encoding.ASCII.GetBytes(data); //+ "$");
+                //Console.WriteLine("ISent=" + data); debuig to make sure the correct data is sent
+                byte[] outStream = System.Text.Encoding.ASCII.GetBytes(data + "$");
                 SendStream.Write(outStream, 0, outStream.Length);
                 SendStream.Flush();
             }
             catch { }
-        }
-        private void SendActiveNodeData(ActiveNodeData ToSend)
-        {
-            //try
-            //{
-                NetworkStream SendStream = ClientSocket.GetStream();
-                byte[] outStream = System.Text.Encoding.ASCII.GetBytes(Serialize(ToSend)); //+ "$");
-                //Console.WriteLine("ISent=" + ToSend.Command);
-                SendStream.Write(outStream, 0, outStream.Length);
-                SendStream.Flush();
-            /*}
-            catch(Exception e)
-            {
-                Console.WriteLine("FAILED TO SEND:");
-                Console.WriteLine(e.ToString());
-            }*/
         }
         private string ListenOnInstant()
         {
@@ -113,7 +97,7 @@ namespace A.D.A_Host
                     {
                         DataStream.Read(BytesReceived, 0, BytesReceived.Length);
                         DataReceived = System.Text.Encoding.ASCII.GetString(BytesReceived);
-                        DataReceived = DataReceived.Substring(0, DataReceived.IndexOf("$"));
+                        //DataReceived = DataReceived.Substring(0, DataReceived.IndexOf("$"));
                     }
                     else { DataReceived = ""; }
                     DataStream.Flush();
@@ -129,7 +113,8 @@ namespace A.D.A_Host
             }
             return DataReceived;
         }
-        private string Listen()
+
+        public ActiveNodeData Listen()
         {
             byte[] BytesReceived = new byte[1280];
             string DataReceived = null;
@@ -140,25 +125,27 @@ namespace A.D.A_Host
                     DataStream = ClientSocket.GetStream();
                     DataStream.Read(BytesReceived, 0, BytesReceived.Length);
                     DataReceived = System.Text.Encoding.ASCII.GetString(BytesReceived);
-                    DataReceived = DataReceived.Substring(0, DataReceived.IndexOf("$"));
+                    //DataReceived = DataReceived.Substring(0, DataReceived.IndexOf("$"));
                     DataStream.Flush();
                     break;
                 }
                 catch { break; }
             }
+            /*
             //Method for checking if a client is still connected
             if (DataReceived == "/AREYOUTHERE")
             {
                 Send("/IMHERE");
                 DataReceived = "";
-            }
-            return DataReceived;
+            }*/
+
+            return (ActiveNodeData)Deserialize(DataReceived);
         }
 
         //Serializing Objects
         private object Deserialize(string toDeserialize)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(object));
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ActiveNodeData));
             using (StringReader textReader = new StringReader(toDeserialize))
             {
                 return (object)xmlSerializer.Deserialize(textReader);
@@ -166,7 +153,7 @@ namespace A.D.A_Host
         }
         private string Serialize(object toSerialize)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ActiveNodeData));
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(object));
             using (StringWriter textWriter = new StringWriter())
             {
                 xmlSerializer.Serialize(textWriter, toSerialize);
