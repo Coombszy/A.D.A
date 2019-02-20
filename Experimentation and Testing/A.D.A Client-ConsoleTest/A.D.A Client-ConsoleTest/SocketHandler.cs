@@ -27,7 +27,7 @@ namespace A.D.A_Client_ConsoleTest
         }
         public void StartSocket()
         {
-            if(Connect())
+            if (Connect())
             {
                 Console.WriteLine("Successfully Connected to server!");
             }
