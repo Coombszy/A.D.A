@@ -11,16 +11,20 @@ namespace A.D.A_Client_ConsoleTest
         [STAThreadAttribute]
         static void Main(string[] args)
         {
-            CommandHandler CommandExe = new CommandHandler();
             SocketHandler Client = new SocketHandler();
             Client.StartSocket();
             string Input;
+
+            //Client Variabled
+            bool debugMode = false;
+
+
+            CommandHandler CommandExe = new CommandHandler(ref debugMode);
             while (true)
             {
                 Input = Console.ReadLine();
                 Client.Send(Input);
                 var Temp = Client.Listen();
-                Console.WriteLine("Comd:" + Temp.Command);
 
                 //Test response and command merging using a "cut in" value. in this test being #/# <-- in this location data will be inserted here for the user
                 string CommandData = CommandExe.HandleCommand(Temp.Command);
@@ -33,12 +37,16 @@ namespace A.D.A_Client_ConsoleTest
                     Console.WriteLine(Temp.Response);
                 }
                 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-                
-                Console.WriteLine("Dict:");
-                foreach (string dictent in Temp.Dictionary)
+
+                if (debugMode)
                 {
-                    Console.WriteLine("     -" + dictent);
-                    
+                    Console.WriteLine("Comand Received:" + Temp.Command);
+                    Console.WriteLine("Dictionary Recieved:");
+                    foreach (string dictent in Temp.Dictionary)
+                    {
+                        Console.WriteLine("     -" + dictent);
+
+                    }
                 }
             }
         }

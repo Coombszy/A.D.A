@@ -52,9 +52,6 @@ namespace A.D.A_Host
                 }
                 var temp = MemoryUnit.Response(Received);
                 SendActiveNodeData(new ActiveNodeData(temp.Command, temp.Response, temp.Dictionary));
-
-                //Response = "A.D.A ~ " + MemoryUnit.Response(Received);
-                //Send(Response);
             }
             Console.WriteLine(" >> Client has Disconnected");
         }
@@ -121,12 +118,12 @@ namespace A.D.A_Host
                 }
                 catch { break; }
             }
-            //Method for checking if a client is still connected
-            if (DataReceived == "/AREYOUTHERE")
+            //Method for checking if a client is still connected - !!Legacy code from original design. (Source: WordFun)!!
+            /*if (DataReceived == "/AREYOUTHERE")
             {
                 Send("/IMHERE");
                 DataReceived = "";
-            }
+            }*/
             return DataReceived;
         }
         private string Listen()
@@ -146,12 +143,12 @@ namespace A.D.A_Host
                 }
                 catch { break; }
             }
-            //Method for checking if a client is still connected
-            if (DataReceived == "/AREYOUTHERE")
+            //Method for checking if a client is still connected - !!Legacy code from original design. (Source: WordFun)!!
+            /*if (DataReceived == "/AREYOUTHERE")
             {
                 Send("/IMHERE");
                 DataReceived = "";
-            }
+            }*/
             return DataReceived;
         }
 

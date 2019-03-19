@@ -143,4 +143,23 @@
     </Triggers>
     <Command>#L:TIMENOW#</Command>
   </EVENT>
+  <EVENT ID="300" Name="DEBUG-wake-greeting">
+    <Tree>false</Tree>
+    <AlwaysAwake>true</AlwaysAwake>
+    <Phrases>
+      <string>delta bravo whiskey</string>
+    </Phrases>
+		<SubEvents>
+      <int>301</int>
+    </SubEvents>
+    <Command>#H:WAKESOUND#</Command>
+  </EVENT>
+  <EVENT ID="301" Name="DEBUG-clientdebugtoggle">
+    <Tree>true</Tree>
+    <AlwaysAwake>false</AlwaysAwake>
+    <Phrases>
+      <string>toggle client debug</string>
+    </Phrases>
+    <Command>#H:WAKESOUND#</Command>
+  </EVENT>
   </EVENTS>

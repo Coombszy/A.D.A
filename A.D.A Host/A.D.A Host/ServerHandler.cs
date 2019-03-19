@@ -29,6 +29,8 @@ namespace A.D.A_Host
                 HostSocket = new TcpListener(IPAddress.Any, PortNumber);
                 HostSocket.Start();
                 Console.WriteLine(" >> Server Started!");
+                Thread UserInput = new Thread(ServerCommandEntry);
+                UserInput.Start();
                 ListeningLoop();
             }
             catch(Exception e)
@@ -55,6 +57,28 @@ namespace A.D.A_Host
         private void CreateClientThread()
         {
             ClientHandler Client = new ClientHandler(TempSocket, ref this.MasterMemoryUnit);
+        }
+        private void ServerCommandEntry()
+        {
+            while (true)
+            {
+                string Input = Console.ReadLine().ToLower();
+                switch (Input)
+                {
+                    case "help":
+                        Console.WriteLine("shutdown - shutdown these server");
+                        Console.WriteLine("rebuild - rebuilds the list of events");
+
+                        break;
+                    case "shutdown":
+                        Environment.Exit(1);
+                        break;
+                    case "rebuild":
+                        MasterMemoryUnit.BuildEventList();
+                        MasterMemoryUnit.BuildMemoryStructure();
+                        break;
+                }
+            }
         }
     }
 }
