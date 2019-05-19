@@ -15,11 +15,11 @@ namespace A.D.A_Client_ConsoleTest
             Client.StartSocket();
             string Input;
 
-            //Client Variabled
-            bool debugMode = false;
+            //Client Variables
+            //bool debugMode = false;
 
 
-            CommandHandler CommandExe = new CommandHandler(ref debugMode);
+            CommandHandler CommandExe = new CommandHandler();//ref debugMode);
             while (true)
             {
                 Input = Console.ReadLine();
@@ -38,7 +38,8 @@ namespace A.D.A_Client_ConsoleTest
                 }
                 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-                if (debugMode)
+                //Console.WriteLine("D:" + debugMode);
+                if (true)
                 {
                     Console.WriteLine("Comand Received:" + Temp.Command);
                     Console.WriteLine("Dictionary Recieved:");

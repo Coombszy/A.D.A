@@ -10,10 +10,10 @@ namespace A.D.A_Client_ConsoleTest
 {
     class CommandHandler
     {
-        bool debugMode_Main;
-        public CommandHandler(ref bool debugMode)
+        //ref bool debugMode_Main;
+        public CommandHandler()//ref bool debugMode)
         {
-            this.debugMode_Main = debugMode;
+            //debugMode_Main = debugMode;
         }//Parameters are variables crucial to the running of the client
         public string HandleCommand(string IncomingCommand)
         {
@@ -45,9 +45,10 @@ namespace A.D.A_Client_ConsoleTest
                 case "SHUTDOWN":
                     Environment.Exit(1);
                     return "";
-                case "DEBUGTOGGLE":
+                /*case "DEBUGTOGGLE":
                     debugMode_Main = !debugMode_Main;//toggle debug state
-                    return "";
+                    Console.WriteLine("TOGGLED! :"+debugMode_Main);
+                    return "";*/
             }
             return "ERROR IN Command_HardCoded";
         }

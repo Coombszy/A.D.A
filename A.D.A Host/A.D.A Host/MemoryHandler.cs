@@ -10,6 +10,7 @@ namespace A.D.A_Host
         private List<Node> EventList;
         private Node ActiveNode; // -------------------------MAKE ME PRIVATE (PUBLIC FOR DEBUG)----------------
         private List<string> EventDictionary;
+        private CommandHandler CommandHandle;
 
         public struct ActiveNodeData
         {
@@ -21,6 +22,11 @@ namespace A.D.A_Host
                 Response = Response_;
                 Dictionary = Dictionary_;
             }
+        }
+
+        public MemoryHandler()
+        {
+            this.CommandHandle = new CommandHandler();
         }
 
         public void BuildEventList()
@@ -150,45 +156,6 @@ namespace A.D.A_Host
             return ActiveNode.MyCommand;
             
         }
-        /*public bool NavigateOLD(string EventString)
-        {
-            List<string> EventStrings = GetEventsofActiveNode();
-            if(EventStrings.Contains(EventString))
-            {
-                if(ActiveNode == null)
-                {
-                    foreach(Node Event in MemoryStructure)
-                    {
-                        foreach(string String in Event.MyPhrases)
-                        {
-                            if(String == EventString)
-                            {
-                                ActiveNode = Event;
-                                return true;
-                            }
-                        }
-                        break;
-                    }
-                }
-                else if (ActiveNode.Terminator == false)
-                {
-                    foreach (Node Event in ActiveNode.MySubEvents)
-                    {
-                        foreach (string String in Event.MyPhrases)
-                        {
-                            Console.WriteLine(":" + String);
-                            if (String == EventString)
-                            {
-                                ActiveNode = Event;
-                                return true;
-                            }
-                        }
-                        break;
-                    }
-                }
-            }
-            return false;
-        }*/
         public bool Navigate(string EventString)
         {
             List<string> EventStrings = GetEventsofActiveNode();
@@ -206,7 +173,6 @@ namespace A.D.A_Host
                                 return true;
                             }
                         }
-                        break;
                     }
                 }
                 else if (ActiveNode.Terminator == false)
@@ -225,6 +191,10 @@ namespace A.D.A_Host
                 }
             }
             return false;
+        }
+        public void ResetActiveNode()
+        {
+            ActiveNode = null;
         }
 
         //For cloning memory structures
@@ -243,8 +213,11 @@ namespace A.D.A_Host
             if (EventDictionary.Contains(UserInput))
             {
                 Navigate(UserInput);
-                //Console.WriteLine("NAVIGATED! : " + MemoryUnit.ActiveNode.MyName);//------------- SEE WHICH NODES ARE BEING NAVIGATED TOO ------------ 
+                //Console.WriteLine("NAVIGATED! : " + ActiveNode.MyName);//------------- SEE WHICH NODES ARE BEING NAVIGATED TOO ------------ 
                 EventDictionary = GetEventsofActiveNode();
+
+
+
                 return GetAResponse();
                 /*
                 foreach (string aa in EventDictionary)
@@ -266,6 +239,8 @@ namespace A.D.A_Host
         {
             string Command = GetCommand();
             string Response = GetResponse();
+
+            CommandHandle.HandleCommand(Command);
             
             return new ActiveNodeData(Command, Response, EventDictionary);
         }

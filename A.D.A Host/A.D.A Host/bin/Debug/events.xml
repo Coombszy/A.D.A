@@ -18,6 +18,8 @@
 	  <int>9</int>
 	  <int>10</int>
 	  <int>11</int>
+	  <int>12</int>
+	  <int>13</int>
     </SubEvents>
     <Command>#H:WAKESOUND#</Command>
   </EVENT>
@@ -143,13 +145,35 @@
     </Triggers>
     <Command>#L:TIMENOW#</Command>
   </EVENT>
+  <EVENT ID="12" Name="startesxihost">
+    <Tree>True</Tree>
+    <AlwaysAwake>False</AlwaysAwake>
+    <Phrases>
+      <string>start esxi host</string>
+    </Phrases>
+	<Triggers>
+	  <string>starting the e s x i host now</string>
+    </Triggers>
+    <Command>#S:STARTESXI#</Command>
+  </EVENT>
+  <EVENT ID="13" Name="stopactivejob">
+    <Tree>True</Tree>
+    <AlwaysAwake>False</AlwaysAwake>
+    <Phrases>
+      <string>stop active job</string>
+    </Phrases>
+	<Triggers>
+	  <string>aborting job thread</string>
+    </Triggers>
+    <Command>#S:STOPJOB#</Command>
+  </EVENT>
   <EVENT ID="300" Name="DEBUG-wake-greeting">
     <Tree>false</Tree>
     <AlwaysAwake>true</AlwaysAwake>
     <Phrases>
-      <string>delta bravo whiskey</string>
+      <string>debug</string>
     </Phrases>
-		<SubEvents>
+	<SubEvents>
       <int>301</int>
     </SubEvents>
     <Command>#H:WAKESOUND#</Command>
@@ -160,6 +184,6 @@
     <Phrases>
       <string>toggle client debug</string>
     </Phrases>
-    <Command>#H:WAKESOUND#</Command>
+    <Command>#H:DEBUGTOGGLE#</Command>
   </EVENT>
-  </EVENTS>
+</EVENTS>

@@ -50,8 +50,8 @@ namespace A.D.A_Host
                     Connected = false;
                     break;
                 }
-                var temp = MemoryUnit.Response(Received);
-                SendActiveNodeData(new ActiveNodeData(temp.Command, temp.Response, temp.Dictionary));
+                var MemResponse = MemoryUnit.Response(Received);
+                SendActiveNodeData(new ActiveNodeData(MemResponse.Command, MemResponse.Response, MemResponse.Dictionary));
             }
             Console.WriteLine(" >> Client has Disconnected");
         }
