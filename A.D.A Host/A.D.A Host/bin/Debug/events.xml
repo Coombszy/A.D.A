@@ -20,6 +20,7 @@
 	  <int>11</int>
 	  <int>12</int>
 	  <int>13</int>
+	  <int>14</int>
     </SubEvents>
     <Command>#H:WAKESOUND#</Command>
   </EVENT>
@@ -145,7 +146,7 @@
     </Triggers>
     <Command>#L:TIMENOW#</Command>
   </EVENT>
-  <EVENT ID="12" Name="startesxihost">
+  <EVENT ID="12" Name="startesxihostjob">
     <Tree>True</Tree>
     <AlwaysAwake>False</AlwaysAwake>
     <Phrases>
@@ -166,6 +167,17 @@
 	  <string>aborting job thread</string>
     </Triggers>
     <Command>#S:STOPJOB#</Command>
+  </EVENT>
+  <EVENT ID="14" Name="startlinuxlitejob">
+    <Tree>True</Tree>
+    <AlwaysAwake>False</AlwaysAwake>
+    <Phrases>
+      <string>start linux lite</string>
+    </Phrases>
+	<Triggers>
+	  <string>starting linux lite machine</string>
+    </Triggers>
+    <Command>#S:STARTLINUXLITE#</Command>
   </EVENT>
   <EVENT ID="300" Name="DEBUG-wake-greeting">
     <Tree>false</Tree>

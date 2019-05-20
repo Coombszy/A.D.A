@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Net;
 using System.Globalization;
 using System.Threading;
+using Renci.SshNet;
 
 namespace A.D.A_Host
 {
     class CommandHandler
     {
         private Thread JobThread;
+
         public string HandleCommand(string IncomingCommand)
         {
             if (IncomingCommand.Contains("#S:"))
@@ -21,19 +24,23 @@ namespace A.D.A_Host
             }
             return "ERROR IN HandleCommand";
         }
+
         private string StripCommandClassification(string IncomingCommand)
         {
             string CommandData = IncomingCommand.Remove(0, 3);
             CommandData = CommandData.Remove(CommandData.Length - 1, 1);
             return CommandData;
         }
-
         private string Command_ServerHardCoded(string CommandData)
         {
             switch (CommandData)
             {
                 case "STARTESXI":
                     JobThread = new Thread(StartESXI);
+                    JobThread.Start();
+                    return "";
+                case "STARTLINUXLITE":
+                    JobThread = new Thread(StartLinuxLite);
                     JobThread.Start();
                     return "";
                 case "SHUTDOWN":
@@ -58,132 +65,108 @@ namespace A.D.A_Host
         //--------- FUNCTIONS FOR RUNNNING JOBS HERE----------
 
         //NETWORK COMMANDS
-        private void SendMagicPacketA(string MacAddress, string IpAddress)
+        private void SendMagicPacket(string TargetMac, string SourceIp)
         {
-            MacAddress = Regex.Replace(MacAddress, "[-|:]", "");       // Remove any semicolons or minus characters present in our MAC address
 
-            var sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp)
-            {
-                EnableBroadcast = true
-            };
+            PhysicalAddress target = PhysicalAddress.Parse(TargetMac.ToUpper());
+            IPAddress senderAddress = IPAddress.Parse(SourceIp);
 
-            int PayloadIndex = 0;
+            byte[] payload = new byte[102]; // 6 bytes of ff, plus 16 repetitions of the 6-byte target
+            byte[] targetMacBytes = target.GetAddressBytes();
 
-            /* The magic packet is a broadcast frame containing anywhere within its payload 6 bytes of all 255 (FF FF FF FF FF FF in hexadecimal), followed by sixteen repetitions of the target computer's 48-bit MAC address, for a total of 102 bytes. */
-            byte[] Payload = new byte[1024];    // Our packet that we will be broadcasting
-
-            // Add 6 bytes with value 255 (FF) in our payload
+            // Set first 6 bytes to ff
             for (int i = 0; i < 6; i++)
-            {
-                Payload[PayloadIndex] = 255;
-                PayloadIndex++;
-            }
+                payload[i] = 0xff;
 
-            // Repeat the device MAC address sixteen times
-            for (int j = 0; j < 16; j++)
-            {
-                for (int k = 0; k < MacAddress.Length; k += 2)
-                {
-                    var s = MacAddress.Substring(k, 2);
-                    Payload[PayloadIndex] = byte.Parse(s, NumberStyles.HexNumber);
-                    PayloadIndex++;
-                }
-            }
+            // Repeat the target mac 16 times
+            for (int i = 6; i < 102; i += 6)
+                targetMacBytes.CopyTo(payload, i);
 
-            sock.SendTo(Payload, new IPEndPoint(IPAddress.Parse(IpAddress), 0));  // Broadcast our packet
-            sock.Close(10000);
+            // Create a socket to send the packet, and send it
+            using (Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp))
+            {
+                sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true);
+                sock.Bind(new IPEndPoint(senderAddress, 0));
+                sock.SendTo(payload, new IPEndPoint(IPAddress.Broadcast, 7));
+            }
         }
-        private void SendMagicPacketAA(string MacAddress)
+        private void SendCommandSHH(string host, string userName, string psw, string finalCommand)
         {
-            MacAddress = Regex.Replace(MacAddress, "[-|:]", "");
-            WOLClass client = new WOLClass();
-            client.Connect(new
-               IPAddress(0xffffffff),  //255.255.255.255  i.e broadcast
-               0x2fff); // port=12287 let's use this one 
-            client.SetClientToBrodcastMode();
-            //set sending bites
-            int counter = 0;
-            //buffer to be send
-            byte[] bytes = new byte[1024];   // more than enough :-)
-                                             //first 6 bytes should be 0xFF
-            for (int y = 0; y < 6; y++)
-                bytes[counter++] = 0xFF;
-            //now repeate MAC 16 times
-            for (int y = 0; y < 16; y++)
+            new KeyboardInteractiveAuthenticationMethod(userName);
+
+            ConnectionInfo conInfo = new ConnectionInfo(host, 22, userName, new AuthenticationMethod[]{
+                new PasswordAuthenticationMethod(userName,psw)
+            });
+            SshClient client = new SshClient(conInfo);
+            try
             {
-                int i = 0;
-                for (int z = 0; z < 6; z++)
-                {
-                    bytes[counter++] =
-                        byte.Parse(MacAddress.Substring(i, 2),
-                        NumberStyles.HexNumber);
-                    i += 2;
-                }
+                client.Connect();
+                var outptu = client.RunCommand(finalCommand);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(" >> SSH Job Failed: " + ex.Message);
             }
 
-            //now send wake up packet
-            int reterned_value = client.Send(bytes, 1024);
+            client.Disconnect();
+            client.Dispose();
         }
-        public void SendMagicPacket(string macAddress, string ipAddress, string subnetMask)
+        private bool IsLive(string IpAddress)
         {
-            UdpClient client = new UdpClient();
+            Ping ping = new Ping();
+            PingReply pingReply = ping.Send(IpAddress);
 
-            Byte[] datagram = new byte[102];
-
-            for (int i = 0; i <= 5; i++)
+            if (pingReply.Status == IPStatus.Success)
             {
-                datagram[i] = 0xff;
-            }
-
-            string[] macDigits = null;
-            if (macAddress.Contains("-"))
-            {
-                macDigits = macAddress.Split('-');
+                return true;
             }
             else
             {
-                macDigits = macAddress.Split(':');
+                return false;
             }
-
-            if (macDigits.Length != 6)
-            {
-                throw new ArgumentException("Incorrect MAC address supplied!");
-            }
-
-            int start = 6;
-            for (int i = 0; i < 16; i++)
-            {
-                for (int x = 0; x < 6; x++)
-                {
-                    datagram[start + i * 6 + x] = (byte)Convert.ToInt32(macDigits[x], 16);
-                }
-            }
-
-            IPAddress address = IPAddress.Parse(ipAddress);
-            IPAddress mask = IPAddress.Parse(subnetMask);
-            //IPAddress broadcastAddress = address.GetBroadcastAddress(mask);
-            IPAddress broadcastAddress = IPAddress.Parse(subnetMask);
-
-
-            client.Send(datagram, datagram.Length, broadcastAddress.ToString(), 3);
         }
+        private bool IsESXILive()
+        {
+            return IsLive("192.168.1.200");
+        }
+
         private void StartESXI()
         {
-            SendMagicPacket("3c:97:0e:a9:71:02", "192.168.1.205","255.255.255.0");
-            Console.WriteLine("MAGIC PACKET SENT!");
+            if (IsESXILive() == false)
+            {
+                Console.WriteLine(" >> ESXI Start Job has started!");
+                SendMagicPacket("04-92-26-C3-BF-BB", "192.168.1.201");
+                Thread.Sleep(200000);
+                if (IsESXILive())
+                {
+                    Console.WriteLine(" >> ESXI Start Job has finished");
+                }
+                else
+                {
+                    Console.WriteLine(" >> ESXI Start Job has finished but failed");
+                }
+            }
         }
-       
-    }
-    public class WOLClass : UdpClient
-    {
-        public WOLClass() : base()
-        { }
-        //this is needed to send broadcast packet
-        public void SetClientToBrodcastMode()
+        private void StartLinuxLite()
         {
-            if (this.Active)
-                this.Client.SetSocketOption(SocketOptionLevel.Socket,
-                                          SocketOptionName.Broadcast, 0);
+            Console.WriteLine(" >> Linux Lite Start Job has started!");
+            if (IsESXILive() == false)
+            {
+                Console.WriteLine(" >> Linux Lite Start Job paused, ESXI is not runnning. Running ESXI Start Job");
+                StartESXI();
+                Console.WriteLine(" >> Linux Lite Job resumed");
+            }
+            SendCommandSHH("192.168.1.200", "root", "PASSWORD", @"vim-cmd vmsvc/power.on 3");
+            Thread.Sleep(120000);
+            if (IsLive("192.168.1.240"))
+            {
+                Console.WriteLine(" >>  Linux Lite Start Job has finished");
+            }
+            else
+            {
+                Console.WriteLine(" >> Linux Lite Start Job has finished but failed");
+            }
         }
+
     }
 }

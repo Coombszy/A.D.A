@@ -42,7 +42,7 @@ namespace A.D.A_Client_ConsoleTest
                 if (true)
                 {
                     Console.WriteLine("Comand Received:" + Temp.Command);
-                    Console.WriteLine("Dictionary Recieved:");
+                    Console.WriteLine("Dictionary Received:");
                     foreach (string dictent in Temp.Dictionary)
                     {
                         Console.WriteLine("     -" + dictent);
