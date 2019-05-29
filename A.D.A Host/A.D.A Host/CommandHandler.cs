@@ -156,8 +156,10 @@ namespace A.D.A_Host
                 StartESXI();
                 Console.WriteLine(" >> Linux Lite Job resumed");
             }
+
             SendCommandSHH("192.168.1.200", "root", "PASSWORD", @"vim-cmd vmsvc/power.on 3");
             Thread.Sleep(120000);
+
             if (IsLive("192.168.1.240"))
             {
                 Console.WriteLine(" >>  Linux Lite Start Job has finished");

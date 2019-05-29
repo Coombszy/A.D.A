@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ADA"
+             x:Class="ADA.MainPage">
+
+    <StackLayout>
+        <!-- Place new controls here -->
+        <Label Text="ADA - Android ProtoType"/>
+        <Entry x:Name="entry"/>
+        <Button x:Name="buttonSend" Text="SEND"/>
+        <Label x:Name="output" Text=" "/>
+        <BoxView Color="Red"
+                 VerticalOptions="FillAndExpand" />
+    </StackLayout>
+
+</ContentPage>

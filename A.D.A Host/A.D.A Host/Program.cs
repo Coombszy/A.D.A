@@ -14,7 +14,7 @@ namespace A.D.A_Host
             MemoryUnit.BuildEventList();
             MemoryUnit.BuildMemoryStructure();
             Console.WriteLine("Press Enter to Continue...");
-            Console.ReadLine();
+            //Console.ReadLine();
             Console.Clear();
             ServerHandler Server = new ServerHandler(ref MemoryUnit);
             Server.PortNumber = 3300;

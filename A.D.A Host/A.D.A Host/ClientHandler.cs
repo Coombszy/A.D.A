@@ -44,14 +44,21 @@ namespace A.D.A_Host
             string Received;
             while (Connected)
             {
-                Received = Listen();
+                //Received = Listen();
+                
                 if (ClientSocket.Connected == false)
                 {
                     Connected = false;
                     break;
                 }
-                var MemResponse = MemoryUnit.Response(Received);
-                SendActiveNodeData(new ActiveNodeData(MemResponse.Command, MemResponse.Response, MemResponse.Dictionary));
+                Received = Listen();
+                if(Received != null)
+                {
+                    //Console.WriteLine(">>>>>>>:" + Received + "<<< len:" + Received.Length);
+                    var MemResponse = MemoryUnit.Response(Received);
+                    SendActiveNodeData(new ActiveNodeData(MemResponse.Command, MemResponse.Response, MemResponse.Dictionary));
+                }
+
             }
             Console.WriteLine(" >> Client has Disconnected");
         }
@@ -83,19 +90,27 @@ namespace A.D.A_Host
         }
         private void SendActiveNodeData(ActiveNodeData ToSend)
         {
-            //try
-            //{
+            try
+            {
                 NetworkStream SendStream = ClientSocket.GetStream();
                 byte[] outStream = System.Text.Encoding.ASCII.GetBytes(Serialize(ToSend)); //+ "$");
                 //Console.WriteLine("ISent=" + ToSend.Command);
                 SendStream.Write(outStream, 0, outStream.Length);
                 SendStream.Flush();
-            /*}
+            }
             catch(Exception e)
             {
-                Console.WriteLine("FAILED TO SEND:");
-                Console.WriteLine(e.ToString());
-            }*/
+                if (ClientSocket.Connected == false)
+                {
+                    Connected = false;
+                }
+                else
+                {
+                    Console.WriteLine("FAILED TO SEND:");
+                    Console.WriteLine(e.ToString());
+                }
+
+            }
         }
         private string ListenOnInstant()
         {
