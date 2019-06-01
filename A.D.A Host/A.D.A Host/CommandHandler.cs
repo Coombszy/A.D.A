@@ -147,6 +147,27 @@ namespace A.D.A_Host
                 }
             }
         }
+        private void ShutdownESXI()
+        {
+            if (IsESXILive() == true)
+            {
+                Console.WriteLine(" >> ESXI Shutdown Job has started!");
+                SendMagicPacket("04-92-26-C3-BF-BB", "192.168.1.201");
+                Thread.Sleep(200000);
+                if (IsESXILive())
+                {
+                    Console.WriteLine(" >> ESXI Start Job has finished");
+                }
+                else
+                {
+                    Console.WriteLine(" >> ESXI Start Job has finished but failed");
+                }
+            }
+            else
+            {
+                Console.WriteLine("");
+            }
+        }
         private void StartLinuxLite()
         {
             Console.WriteLine(" >> Linux Lite Start Job has started!");
@@ -157,8 +178,9 @@ namespace A.D.A_Host
                 Console.WriteLine(" >> Linux Lite Job resumed");
             }
 
-            SendCommandSHH("192.168.1.200", "root", "PASSWORD", @"vim-cmd vmsvc/power.on 3");
-            Thread.Sleep(120000);
+            Console.WriteLine(" >> FAILED - SET PASSWORD IN SOURCECODE!");
+            //SendCommandSHH("192.168.1.200", "root", "PASSWORD", @"vim-cmd vmsvc/power.on 3");
+            //Thread.Sleep(120000);
 
             if (IsLive("192.168.1.240"))
             {

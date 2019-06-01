@@ -8,6 +8,8 @@
       <string>hey ada</string>
       <string>hello ada</string>
       <string>okay ada</string>
+	  <string>ok ada</string>
+	  <string>hi ada</string>
     </Phrases>
     <SubEvents>
       <int>2</int>

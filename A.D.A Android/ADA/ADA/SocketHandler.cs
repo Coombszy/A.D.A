@@ -83,7 +83,7 @@ namespace ADA
             {
                 NetworkStream SendStream = ClientSocket.GetStream();
                 string data = ToSend;
-                //Console.WriteLine("ISent=" + data); debuig to make sure the correct data is sent
+                //Console.WriteLine("ISent=" + data); debug to make sure the correct data is sent
                 byte[] outStream = System.Text.Encoding.ASCII.GetBytes(data + "$");
                 SendStream.Write(outStream, 0, outStream.Length);
                 SendStream.Flush();

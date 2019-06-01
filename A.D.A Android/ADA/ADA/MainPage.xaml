@@ -12,6 +12,7 @@
         <Label x:Name="output" Text=" "/>
         <BoxView Color="Red"
                  VerticalOptions="FillAndExpand" />
+        <Button x:Name="recButton" Text="Record"/>
     </StackLayout>
 
 </ContentPage>
