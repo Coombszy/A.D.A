@@ -65,11 +65,11 @@ namespace A.D.A_Host
         //--------- FUNCTIONS FOR RUNNNING JOBS HERE----------
 
         //NETWORK COMMANDS
-        private void SendMagicPacket(string TargetMac, string SourceIp)
+        private void SendMagicPacket(string TargetMac)
         {
 
             PhysicalAddress target = PhysicalAddress.Parse(TargetMac.ToUpper());
-            IPAddress senderAddress = IPAddress.Parse(SourceIp);
+            IPAddress senderAddress = IPAddress.Any;
 
             byte[] payload = new byte[102]; // 6 bytes of ff, plus 16 repetitions of the 6-byte target
             byte[] targetMacBytes = target.GetAddressBytes();
@@ -135,7 +135,7 @@ namespace A.D.A_Host
             if (IsESXILive() == false)
             {
                 Console.WriteLine(" >> ESXI Start Job has started!");
-                SendMagicPacket("04-92-26-C3-BF-BB", "192.168.1.201");
+                SendMagicPacket("04-92-26-C3-BF-BB");
                 Thread.Sleep(200000);
                 if (IsESXILive())
                 {
@@ -152,7 +152,7 @@ namespace A.D.A_Host
             if (IsESXILive() == true)
             {
                 Console.WriteLine(" >> ESXI Shutdown Job has started!");
-                SendMagicPacket("04-92-26-C3-BF-BB", "192.168.1.201");
+                SendMagicPacket("04-92-26-C3-BF-BB");
                 Thread.Sleep(200000);
                 if (IsESXILive())
                 {
