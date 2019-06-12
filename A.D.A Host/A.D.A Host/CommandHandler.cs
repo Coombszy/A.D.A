@@ -90,7 +90,7 @@ namespace A.D.A_Host
                 sock.SendTo(payload, new IPEndPoint(IPAddress.Broadcast, 7));
             }
         }
-        private bool SendCommandSHHOLD(string host, string userName, string psw, string finalCommand)
+        private bool SendCommandSHH(string host, string userName, string psw, string finalCommand)
         {
             new KeyboardInteractiveAuthenticationMethod(userName);
 
@@ -98,31 +98,12 @@ namespace A.D.A_Host
                 new PasswordAuthenticationMethod(userName,psw)
             });
             SshClient client = new SshClient(conInfo);
+
+            client.ConnectionInfo.Timeout = TimeSpan.FromSeconds(60);
             try
             {
                 client.Connect();
                 var outptu = client.RunCommand(finalCommand);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(" >> SSH Job Failed: " + ex.Message);
-                return false;
-            }
-
-            client.Disconnect();
-            client.Dispose();
-            return true;
-        }
-        private bool SendCommandSHH(string host, string userName, string psw, string finalCommand)
-        {
-            
-            SshClient client = new SshClient(host, userName, psw);
-            client.ConnectionInfo.Timeout = TimeSpan.FromSeconds(120);
-            try
-            {
-                client.Connect();
-                var outptu = client.RunCommand(finalCommand);
-
                 client.Disconnect();
                 client.Dispose();
                 return true;
@@ -130,7 +111,6 @@ namespace A.D.A_Host
             catch (Exception ex)
             {
                 Console.WriteLine(" >> SSH Job Failed: " + ex.Message);
-
                 client.Disconnect();
                 client.Dispose();
                 return false;
@@ -207,7 +187,7 @@ namespace A.D.A_Host
                 Thread.Sleep(120000);
                 if (IsLive("192.168.1.240"))
                 {
-                    Console.WriteLine(" >>  Linux Lite Start Job has finished");
+                    Console.WriteLine(" >> Linux Lite Start Job has finished");
                 }
                 else
                 {
