@@ -90,7 +90,7 @@ namespace A.D.A_Host
                 sock.SendTo(payload, new IPEndPoint(IPAddress.Broadcast, 7));
             }
         }
-        private void SendCommandSHH(string host, string userName, string psw, string finalCommand)
+        private bool SendCommandSHH(string host, string userName, string psw, string finalCommand)
         {
             new KeyboardInteractiveAuthenticationMethod(userName);
 
@@ -106,10 +106,12 @@ namespace A.D.A_Host
             catch (Exception ex)
             {
                 Console.WriteLine(" >> SSH Job Failed: " + ex.Message);
+                return false;
             }
 
             client.Disconnect();
             client.Dispose();
+            return true;
         }
         private bool IsLive(string IpAddress)
         {
@@ -175,12 +177,17 @@ namespace A.D.A_Host
             }
 
             //Console.WriteLine(" >> FAILED - SET PASSWORD IN SOURCECODE!");
-            SendCommandSHH("192.168.1.200", "ada", "ada", @"vim-cmd vmsvc/power.on 3");
-            Thread.Sleep(120000);
-
-            if (IsLive("192.168.1.240"))
-            {
-                Console.WriteLine(" >>  Linux Lite Start Job has finished");
+            if(SendCommandSHH("192.168.1.200", "ada", "ada", @"vim-cmd vmsvc/power.on 3"))
+                {
+                Thread.Sleep(120000);
+                if (IsLive("192.168.1.240"))
+                {
+                    Console.WriteLine(" >>  Linux Lite Start Job has finished");
+                }
+                else
+                {
+                    Console.WriteLine(" >> Linux Lite Start Job has finished but failed");
+                }
             }
             else
             {
