@@ -19,6 +19,5 @@ C:\Users\liamdarrengeorge.coo\Desktop\Apprenticeship\Coding Practise\A.D.A\A.D.A
 C:\Users\liamdarrengeorge.coo\Desktop\Apprenticeship\Coding Practise\A.D.A\A.D.A Host\A.D.A Host\obj\Debug\A.D.A Host.csproj.CoreCompileInputs.cache
 C:\Users\liamdarrengeorge.coo\Desktop\Apprenticeship\Coding Practise\A.D.A\A.D.A Host\A.D.A Host\obj\Debug\A.D.A Host.exe
 C:\Users\liamdarrengeorge.coo\Desktop\Apprenticeship\Coding Practise\A.D.A\A.D.A Host\A.D.A Host\obj\Debug\A.D.A Host.pdb
-C:\FileTransfer\A.D.A\A.D.A Host\A.D.A Host\bin\Debug\Renci.SshNet.dll
 C:\FileTransfer\A.D.A\A.D.A Host\A.D.A Host\bin\Debug\Renci.SshNet.xml
 C:\FileTransfer\A.D.A\A.D.A Host\A.D.A Host\obj\Debug\A.D.A Host.csproj.CopyComplete
