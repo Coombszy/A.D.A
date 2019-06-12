@@ -37,6 +37,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\Renci.SshNet.dll</HintPath>
     </Reference>
+    <Reference Include="SshNet.Security.Cryptography, Version=1.2.0.0, Culture=neutral, PublicKeyToken=2fa9220ff3eadda4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\SshNet.Security.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
