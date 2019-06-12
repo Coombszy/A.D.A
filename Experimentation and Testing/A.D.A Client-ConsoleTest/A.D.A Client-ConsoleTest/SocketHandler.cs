@@ -14,7 +14,8 @@ namespace A.D.A_Client_ConsoleTest
     {
         public TcpClient ClientSocket;
         public NetworkStream DataStream;
-        private IPAddress TargetIp = IPAddress.Parse("127.0.0.1");
+        private IPAddress TargetIp = IPAddress.Parse("192.168.1.201");
+        //private IPAddress TargetIp = IPAddress.Parse("192.168.1.117");
         private int TargetPort = 3300;
         public SocketHandler()
         {
