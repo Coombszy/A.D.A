@@ -90,7 +90,7 @@ namespace A.D.A_Host
                 sock.SendTo(payload, new IPEndPoint(IPAddress.Broadcast, 7));
             }
         }
-        private bool SendCommandSHH(string host, string userName, string psw, string finalCommand)
+        private bool SendCommandSHHOLD(string host, string userName, string psw, string finalCommand)
         {
             new KeyboardInteractiveAuthenticationMethod(userName);
 
@@ -112,6 +112,30 @@ namespace A.D.A_Host
             client.Disconnect();
             client.Dispose();
             return true;
+        }
+        private bool SendCommandSHH(string host, string userName, string psw, string finalCommand)
+        {
+            
+            SshClient client = new SshClient(host, userName, psw);
+            try
+            {
+                client.Connect();
+                var outptu = client.RunCommand(finalCommand);
+
+                client.Disconnect();
+                client.Dispose();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(" >> SSH Job Failed: " + ex.Message);
+
+                client.Disconnect();
+                client.Dispose();
+                return false;
+            }
+
+            
         }
         private bool IsLive(string IpAddress)
         {
