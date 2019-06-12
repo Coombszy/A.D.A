@@ -117,6 +117,7 @@ namespace A.D.A_Host
         {
             
             SshClient client = new SshClient(host, userName, psw);
+            client.ConnectionInfo.Timeout = TimeSpan.FromSeconds(120);
             try
             {
                 client.Connect();
