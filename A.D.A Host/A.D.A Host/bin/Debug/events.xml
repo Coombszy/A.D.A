@@ -23,6 +23,7 @@
 	  <int>12</int>
 	  <int>13</int>
 	  <int>14</int>
+	  <int>15</int>
     </SubEvents>
     <Command>#H:WAKESOUND#</Command>
   </EVENT>
@@ -180,6 +181,17 @@
 	  <string>starting linux lite machine</string>
     </Triggers>
     <Command>#S:STARTLINUXLITE#</Command>
+  </EVENT>
+  <EVENT ID="15" Name="favouritecolour">
+    <Tree>True</Tree>
+    <AlwaysAwake>False</AlwaysAwake>
+    <Phrases>
+      <string>whats your favourite colour</string>
+    </Phrases>
+    <Triggers>
+      <string>red like blood!</string>
+      <string>red always looks nice</string>
+    </Triggers>
   </EVENT>
   <EVENT ID="300" Name="DEBUG-wake-greeting">
     <Tree>false</Tree>
