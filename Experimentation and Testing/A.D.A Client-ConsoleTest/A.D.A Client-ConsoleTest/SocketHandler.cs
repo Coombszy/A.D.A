@@ -14,8 +14,8 @@ namespace A.D.A_Client_ConsoleTest
     {
         public TcpClient ClientSocket;
         public NetworkStream DataStream;
-        //private IPAddress TargetIp = IPAddress.Parse("192.168.1.201");
-        private IPAddress TargetIp = IPAddress.Parse("192.168.1.117");
+        private IPAddress TargetIp = IPAddress.Parse("192.168.1.201");
+        //private IPAddress TargetIp = IPAddress.Parse("192.168.1.117");
         private int TargetPort = 3300;
         public SocketHandler()
         {
@@ -117,7 +117,7 @@ namespace A.D.A_Client_ConsoleTest
 
         public ActiveNodeData Listen()
         {
-            byte[] BytesReceived = new byte[1280];
+            byte[] BytesReceived = new byte[2048];
             string DataReceived = null;
             while (true)
             {
@@ -125,12 +125,17 @@ namespace A.D.A_Client_ConsoleTest
                 {
                     DataStream = ClientSocket.GetStream();
                     DataStream.Read(BytesReceived, 0, BytesReceived.Length);
+                    //Console.WriteLine("SIZE:" + BytesReceived.Length);
                     DataReceived = System.Text.Encoding.ASCII.GetString(BytesReceived);
-                    //DataReceived = DataReceived.Substring(0, DataReceived.IndexOf("$"));
+                    //Console.WriteLine(DataReceived);
                     DataStream.Flush();
                     break;
                 }
-                catch { break; }
+                catch (Exception e)
+                {
+                    Console.WriteLine("FAILED! "+ e.ToString());
+                    break;
+                }
             }
             /*
             //Method for checking if a client is still connected

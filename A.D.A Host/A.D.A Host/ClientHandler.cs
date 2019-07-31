@@ -93,8 +93,10 @@ namespace A.D.A_Host
             try
             {
                 NetworkStream SendStream = ClientSocket.GetStream();
+                //Console.WriteLine(Serialize(ToSend));
                 byte[] outStream = System.Text.Encoding.ASCII.GetBytes(Serialize(ToSend)); //+ "$");
                 //Console.WriteLine("ISent=" + ToSend.Command);
+                //Console.WriteLine("steamSize=" + outStream.Length);
                 SendStream.Write(outStream, 0, outStream.Length);
                 SendStream.Flush();
             }

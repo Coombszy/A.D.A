@@ -24,6 +24,7 @@
 	  <int>13</int>
 	  <int>14</int>
 	  <int>15</int>
+	  <int>16</int>
     </SubEvents>
     <Command>#H:WAKESOUND#</Command>
   </EVENT>
@@ -192,6 +193,17 @@
       <string>red like blood!</string>
       <string>red always looks nice</string>
     </Triggers>
+  </EVENT>
+  <EVENT ID="16" Name="startesxihostjob">
+    <Tree>True</Tree>
+    <AlwaysAwake>False</AlwaysAwake>
+    <Phrases>
+      <string>start project ozone</string>
+    </Phrases>
+	<Triggers>
+	  <string>starting project ozone now</string>
+    </Triggers>
+    <Command>#S:STARTPRJCTOZONE#</Command>
   </EVENT>
   <EVENT ID="300" Name="DEBUG-wake-greeting">
     <Tree>false</Tree>

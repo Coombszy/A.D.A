@@ -49,6 +49,10 @@ namespace A.D.A_Host
                 case "STOPJOB":
                     JobThread.Abort();
                     return "";
+                case "STARTPRJCTOZONE":
+                    JobThread = new Thread(StartProjectOzone);
+                    JobThread.Start();
+                    return "";
 
 
 
@@ -199,6 +203,22 @@ namespace A.D.A_Host
                 Console.WriteLine(" >> Linux Lite Start Job has finished but failed");
             }
         }
-
+        private void StartProjectOzone()
+        {
+            Console.WriteLine(" >> Project Ozone Start Job has started!");
+            if (IsLive("192.168.1.240") == false)
+            {
+                Console.WriteLine(" >> Project Ozone Start Job failed! Linux Lite is OFFLINE");
+                return;
+            }
+            if (SendCommandSHH("192.168.1.240", "liam", "linuxlite", @"cd '/home/liam/PJCT - OZONE' && ./'ServerStart (copy 1)'.sh"))
+            {
+                Console.WriteLine(" >> Project Ozone Start has finished");
+            }
+            else
+            {
+                Console.WriteLine(" >>  Project Ozone Start Job has finished but failed");
+            }
+        }
     }
 }
